@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "composite": true,
+    "strict": true,
+    "esModuleInterop": true
+  },
+  "include": ["packages/**/*"],
+  "exclude": ["node_modules"]
+}
