@@ -1,6 +1,24 @@
 {
-  "private": true,
-  "workspaces": [
-    "packages/*"
-  ]
+  "name": "@usememos/mui",
+  "version": "0.0.1",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup src/index.ts --format esm,cjs --dts"
+  },
+  "devDependencies": {
+    "@swc/core": "^1.7.39",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1"
+  },
+  "peerDependencies": {
+    "react": "^17.0.0",
+    "react-dom": "^17.0.0",
+    "tsup": "^8.3.0",
+    "typescript": "^5.6.3"
+  }
 }
