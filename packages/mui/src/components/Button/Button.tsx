@@ -3,9 +3,8 @@ import clsx from "clsx";
 
 type ButtonProps = {
   children: React.ReactNode;
-  variant?: "solid" | "outlined" | "soft" | "plain";
+  type?: "default" | "primary" | "success" | "warning" | "error"; // default 是默认类型
   size?: "sm" | "md" | "lg";
-  loading?: boolean;
   disabled?: boolean;
   startDecorator?: React.ReactNode;
   endDecorator?: React.ReactNode;
@@ -14,31 +13,32 @@ type ButtonProps = {
 
 const Button: React.FC<ButtonProps> = ({
   children,
-  variant = "solid",
+  type = "default",
   size = "md",
-  loading = false,
   disabled = false,
   startDecorator,
   endDecorator,
   onClick,
 }) => {
-  const buttonClasses = clsx("inline-flex items-center justify-center font-medium focus:outline-none transition-colors duration-200", {
-    // Variants
-    "bg-blue-500 text-white hover:bg-blue-600": variant === "solid",
-    "border border-blue-500 text-blue-500 hover:bg-blue-100": variant === "outlined",
-    "bg-blue-100 text-blue-500 hover:bg-blue-200": variant === "soft",
-    "text-blue-500 hover:bg-blue-50": variant === "plain",
-    // Sizes
-    "px-4 py-2 text-sm": size === "sm",
-    "px-6 py-3 text-base": size === "md",
-    "px-8 py-4 text-lg": size === "lg",
-    // Disabled and loading state
-    "opacity-50 cursor-not-allowed": disabled || loading,
+  const baseClasses = "inline-flex items-center font-medium rounded";
+
+  const typeClasses = clsx({
+    "bg-gray-200 text-black hover:bg-gray-300": type === "default",
+    "bg-primary text-white hover:bg-primary-dark": type === "primary",
+    "bg-success text-white hover:bg-success-dark": type === "success",
+    "bg-warning text-white hover:bg-warning-dark": type === "warning",
+    "bg-error text-white hover:bg-error-dark": type === "error",
+    "opacity-50 cursor-not-allowed": disabled,
+  });
+
+  const sizeClasses = clsx({
+    "px-2 py-1 text-xs": size === "sm",
+    "px-4 py-2 text-sm": size === "md",
+    "px-6 py-3 text-base": size === "lg",
   });
 
   return (
-    <button className={buttonClasses} onClick={onClick} disabled={disabled || loading}>
-      {loading && <span className="loader mr-2"></span>}
+    <button className={clsx(baseClasses, typeClasses, sizeClasses)} onClick={onClick} disabled={disabled}>
       {startDecorator && <span className="mr-2">{startDecorator}</span>}
       {children}
       {endDecorator && <span className="ml-2">{endDecorator}</span>}
