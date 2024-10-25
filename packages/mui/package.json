@@ -1,13 +1,13 @@
 {
   "name": "@usememos/mui",
-  "version": "0.0.1-alpha.5",
+  "version": "0.0.1-alpha.6",
+  "license": "MIT",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "files": [
     "dist",
-    "README.md",
-    "LICENSE"
+    "README.md"
   ],
   "scripts": {
     "build": "tsup src/index.ts --format esm,cjs --dts",
@@ -29,7 +29,16 @@
     "typescript-eslint": "^8.11.0"
   },
   "peerDependencies": {
+    "lucide-react": "^0.453.0",
     "react": ">=17.0.0",
     "react-dom": ">=17.0.0"
+  },
+  "homepage": "https://github.com/usememos/mui",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/usememos/mui.git"
+  },
+  "bugs": {
+    "url": "https://github.com/usememos/mui/issues"
   }
 }
