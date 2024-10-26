@@ -1,90 +1,138 @@
 import clsx from "clsx";
-import React from "react";
-import { LoaderIcon } from "lucide-react";
+import React, { forwardRef } from "react";
+import { twMerge } from "tailwind-merge";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
   color?: "default" | "primary" | "success" | "warning" | "error";
   size?: "sm" | "md" | "lg";
   variant?: "plain" | "outlined" | "contained";
-  loading?: boolean;
-  startDecorator?: React.ReactNode;
-  endDecorator?: React.ReactNode;
+  fullWidth?: boolean;
+  asChild?: boolean;
 }
 
-const Button: React.FC<ButtonProps> = ({
-  children,
-  color = "default",
-  size = "md",
-  variant = "contained",
-  loading = false,
-  disabled = false,
-  startDecorator,
-  endDecorator,
-  className,
-  onClick,
-  ...rest
-}) => {
-  const baseClasses = "inline-flex items-center justify-center rounded-md";
+const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+  (
+    {
+      children,
+      color = "default",
+      size = "md",
+      variant = "contained",
+      disabled = false,
+      fullWidth = false,
+      className,
+      onClick,
+      asChild = false,
+      ...rest
+    }: ButtonProps,
+    ref
+  ) => {
+    const baseClasses = "border-box inline-flex items-center justify-center rounded-md";
+    const isInteractive = !disabled;
 
-  const colorClasses = {
-    default: {
-      contained: "bg-gray-200 text-black hover:bg-gray-300",
-      outlined: "border border-gray-300 text-black hover:bg-gray-100",
-      plain: "text-black hover:bg-gray-100",
-    },
-    primary: {
-      contained: "bg-primary text-white hover:bg-primary-dark",
-      outlined: "border border-primary text-primary hover:bg-primary-light hover:bg-opacity-10",
-      plain: "text-primary hover:bg-primary-light hover:bg-opacity-10",
-    },
-    success: {
-      contained: "bg-success text-white hover:bg-success-dark",
-      outlined: "border border-success text-success hover:bg-success-light hover:bg-opacity-10",
-      plain: "text-success hover:bg-success-light hover:bg-opacity-10",
-    },
-    warning: {
-      contained: "bg-warning text-white hover:bg-warning-dark",
-      outlined: "border border-warning text-warning hover:bg-warning-light hover:bg-opacity-10",
-      plain: "text-warning hover:bg-warning-light hover:bg-opacity-10",
-    },
-    error: {
-      contained: "bg-error text-white hover:bg-error-dark",
-      outlined: "border border-error text-error hover:bg-error-light hover:bg-opacity-10",
-      plain: "text-error hover:bg-error-light hover:bg-opacity-10",
-    },
-  };
+    const colorClasses = {
+      default: {
+        contained: clsx(
+          "bg-zinc-300 text-zinc-900 dark:bg-zinc-700 dark:text-zinc-100 shadow",
+          isInteractive && "hover:bg-zinc-400 dark:hover:bg-zinc-800"
+        ),
+        outlined: clsx(
+          "border border-zinc-200 text-zinc-900 dark:border-zinc-600 dark:text-zinc-100 shadow",
+          isInteractive && "hover:bg-zinc-200 dark:hover:bg-zinc-700"
+        ),
+        plain: clsx("text-zinc-900 dark:text-zinc-100 shadow-none", isInteractive && "hover:bg-zinc-200 dark:hover:bg-zinc-700"),
+      },
+      primary: {
+        contained: clsx(
+          "bg-primary text-zinc-50 dark:bg-primary-darker shadow",
+          isInteractive && "hover:bg-primary-dark dark:hover:bg-primary-darkest"
+        ),
+        outlined: clsx(
+          "border border-primary text-primary dark:border-primary-darker dark:text-primary-darker shadow",
+          isInteractive && "hover:bg-primary-light hover:bg-opacity-10 dark:hover:bg-primary-darker dark:hover:bg-opacity-20"
+        ),
+        plain: clsx(
+          "text-primary dark:text-primary-darker shadow-none",
+          isInteractive && "hover:bg-primary-light hover:bg-opacity-10 dark:hover:bg-primary-darker dark:hover:bg-opacity-20"
+        ),
+      },
+      success: {
+        contained: clsx(
+          "bg-success text-zinc-50 dark:bg-success-darker shadow",
+          isInteractive && "hover:bg-success-dark dark:hover:bg-success-darkest"
+        ),
+        outlined: clsx(
+          "border border-success text-success dark:border-success-darker dark:text-success-darker shadow",
+          isInteractive && "hover:bg-success-light hover:bg-opacity-10 dark:hover:bg-success-darker dark:hover:bg-opacity-20"
+        ),
+        plain: clsx(
+          "text-success dark:text-success-darker shadow-none",
+          isInteractive && "hover:bg-success-light hover:bg-opacity-10 dark:hover:bg-success-darker dark:hover:bg-opacity-20"
+        ),
+      },
+      warning: {
+        contained: clsx(
+          "bg-warning text-zinc-50 dark:bg-warning-darker shadow",
+          isInteractive && "hover:bg-warning-dark dark:hover:bg-warning-darkest"
+        ),
+        outlined: clsx(
+          "border border-warning text-warning dark:border-warning-darker dark:text-warning-darker shadow",
+          isInteractive && "hover:bg-warning-light hover:bg-opacity-10 dark:hover:bg-warning-darker dark:hover:bg-opacity-20"
+        ),
+        plain: clsx(
+          "text-warning dark:text-warning-darker shadow-none",
+          isInteractive && "hover:bg-warning-light hover:bg-opacity-10 dark:hover:bg-warning-darker dark:hover:bg-opacity-20"
+        ),
+      },
+      error: {
+        contained: clsx(
+          "bg-error text-zinc-50 dark:bg-error-darker shadow",
+          isInteractive && "hover:bg-error-dark dark:hover:bg-error-darkest"
+        ),
+        outlined: clsx(
+          "border border-error text-error dark:border-error-darker dark:text-error-darker shadow",
+          isInteractive && "hover:bg-error-light hover:bg-opacity-10 dark:hover:bg-error-darker dark:hover:bg-opacity-20"
+        ),
+        plain: clsx(
+          "text-error dark:text-error-darker shadow-none",
+          isInteractive && "hover:bg-error-light hover:bg-opacity-10 dark:hover:bg-error-darker dark:hover:bg-opacity-20"
+        ),
+      },
+    };
 
-  const sizeClasses = {
-    sm: "text-sm px-2 py-1",
-    md: "text-base px-4 py-2",
-    lg: "text-lg px-6 py-3",
-  };
+    const sizeClasses = {
+      sm: "text-xs px-2 py-1 h-8",
+      md: "text-sm px-3 py-2 h-9",
+      lg: "text-base px-4 py-2 h-11",
+    };
 
-  const loaderSizeClasses = {
-    sm: "w-4 h-4",
-    md: "w-5 h-5",
-    lg: "w-6 h-6",
-  };
+    const disabledClasses = "opacity-50 cursor-not-allowed shadow-none";
+    const buttonClasses = twMerge(
+      clsx(baseClasses, colorClasses[color][variant], sizeClasses[size], className, {
+        [disabledClasses]: disabled,
+        "bg-transparent": variant === "plain",
+        "w-full": fullWidth,
+      })
+    );
 
-  const buttonClasses = clsx(baseClasses, colorClasses[color][variant], sizeClasses[size], className, {
-    "opacity-50 cursor-not-allowed": disabled || loading,
-    "bg-transparent": variant === "plain",
-  });
+    if (asChild && React.isValidElement(children)) {
+      const element = children as React.ReactElement;
+      return React.cloneElement(element, {
+        className: clsx(buttonClasses, element.props.className),
+        onClick,
+        disabled,
+        ...rest,
+      });
+    }
 
-  return (
-    <button className={buttonClasses} onClick={onClick} disabled={disabled || loading} {...rest}>
-      {loading ? (
-        <LoaderIcon className={clsx("animate-spin", loaderSizeClasses[size])} />
-      ) : (
-        <>
-          {startDecorator && <span className="mr-1">{startDecorator}</span>}
-          {children}
-          {endDecorator && <span className="ml-1">{endDecorator}</span>}
-        </>
-      )}
-    </button>
-  );
-};
+    return (
+      <button ref={ref} className={buttonClasses} onClick={onClick} disabled={disabled} {...rest}>
+        {children}
+      </button>
+    );
+  }
+);
 
-export default Button;
+Button.displayName = "Button";
+
+export default React.memo(Button);

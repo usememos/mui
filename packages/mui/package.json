@@ -1,6 +1,6 @@
 {
   "name": "@usememos/mui",
-  "version": "0.0.1-alpha.6",
+  "version": "0.0.1-alpha.10",
   "license": "MIT",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -22,8 +22,6 @@
     "eslint": "^8",
     "eslint-plugin-react": "^7.37.2",
     "globals": "^15.11.0",
-    "postcss": "^8.4.47",
-    "tailwindcss": "^3.4.14",
     "tsup": "^8.3.0",
     "typescript": "^5.6.3",
     "typescript-eslint": "^8.11.0"
@@ -31,7 +29,10 @@
   "peerDependencies": {
     "lucide-react": "^0.453.0",
     "react": ">=17.0.0",
-    "react-dom": ">=17.0.0"
+    "react-dom": ">=17.0.0",
+    "postcss": "^8.4.47",
+    "tailwindcss": "^3.4.14",
+    "tailwind-merge": "^2.5.4"
   },
   "homepage": "https://github.com/usememos/mui",
   "repository": {
