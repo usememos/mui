@@ -1,38 +1,12 @@
-import { Button } from "@usememos/mui";
-import { ChevronLeftIcon, SendIcon, XIcon } from "lucide-react";
+import Link from "next/link";
+import React from "react";
 
 export default function Home() {
   return (
     <div className="grid grid-rows-[20px_1fr_20px] dark:bg-zinc-900 items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
       <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Button color="primary" variant="contained">
-          {"This is Button"}
-        </Button>
-        <Button color="primary" variant="contained" disabled>
-          {"This is Button"}
-        </Button>
-        <Button color="primary" size="sm" variant="contained">
-          {"This is Button"}
-        </Button>
-        <Button size="sm" variant="outlined">
-          {"This is Button"}
-        </Button>
-        <Button color="primary" variant="outlined">
-          {"This is Button"}
-        </Button>
-
-        <Button className="!rounded-xl" variant="plain">
-          <ChevronLeftIcon className="w-5 h-auto opacity-70 mr-1" />
-          Collapse
-        </Button>
-        <Button size="sm">
-          <XIcon />
-        </Button>
-
-        <Button color="primary">
-          <span>Save</span>
-          <SendIcon className="ml-1" size={16} />
-        </Button>
+        <Link href="/components/button">Button</Link>
+        <Link href="/components/checkbox">Checkbox</Link>
       </main>
     </div>
   );
