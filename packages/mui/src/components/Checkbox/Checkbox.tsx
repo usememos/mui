@@ -18,7 +18,7 @@ const Checkbox: React.FC<Props> = ({ size = "md", checked = false, className, di
   };
 
   const baseClasses = "relative flex items-center justify-center border rounded gap-2";
-  const interactiveClasses = isInteractive ? "cursor-pointer" : "";
+  const interactiveClasses = isInteractive ? "cursor-pointer hover:opacity-80" : "";
   const checkedClasses = checked
     ? "bg-primary border-primary dark:bg-primary-darker dark:border-primary-darker"
     : "bg-white border-zinc-300 dark:bg-zinc-800 dark:border-zinc-600";
@@ -38,7 +38,7 @@ const Checkbox: React.FC<Props> = ({ size = "md", checked = false, className, di
             }
           }}
           disabled={disabled}
-          className="absolute opacity-0 inset-0 cursor-pointer"
+          className="absolute inset-0 opacity-0 cursor-pointer"
           {...rest}
         />
       </div>

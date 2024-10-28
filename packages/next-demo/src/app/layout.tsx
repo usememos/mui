@@ -14,7 +14,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="dark:bg-zinc-900">{children}</body>
+      <body className="dark:bg-zinc-900">
+        <div className="w-full flex flex-col justify-center items-center gap-8 px-20 py-10">{children}</div>
+      </body>
     </html>
   );
 }

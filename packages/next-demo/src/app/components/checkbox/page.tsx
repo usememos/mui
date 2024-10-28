@@ -7,7 +7,7 @@ export default function Home() {
   const [checked, setChecked] = React.useState(false);
 
   return (
-    <div className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
+    <div className="w-full flex flex-col justify-center items-start gap-4">
       <Checkbox checked={checked} onChange={(e) => setChecked(e.target.checked)} label="YES" />
       <Checkbox checked readOnly />
       <Checkbox disabled />
