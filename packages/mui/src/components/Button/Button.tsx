@@ -24,34 +24,34 @@ const Button: React.FC<Props> = ({
   onClick,
   ...rest
 }: Props) => {
-  const baseClasses = "inline-flex items-center justify-center rounded-md transition-all duration-200";
+  const baseClasses = "border-box inline-flex items-center justify-center rounded-md";
   const isInteractive = !disabled;
 
   const colorClasses = {
     default: {
-      contained: "bg-gray-300 text-gray-900 dark:bg-gray-700 dark:text-gray-100 shadow-sm",
-      outlined: "border border-gray-200 text-gray-900 dark:border-gray-600 dark:text-gray-100 shadow-sm",
-      plain: "text-gray-900 dark:text-gray-100 shadow-none",
+      contained: "bg-zinc-300 text-zinc-900 dark:bg-zinc-700 dark:text-zinc-100 shadow-sm",
+      outlined: "border border-zinc-200 text-zinc-900 dark:border-zinc-600 dark:text-zinc-100 shadow-sm",
+      plain: "text-zinc-900 dark:text-zinc-100 shadow-none",
     },
     primary: {
-      contained: "bg-blue-500 text-white dark:bg-blue-700 shadow-sm dark:text-white",
-      outlined: "border border-blue-500 text-blue-500 dark:border-blue-700 dark:text-blue-700 shadow-sm",
-      plain: "text-blue-500 dark:text-blue-700 shadow-none",
+      contained: "bg-primary text-zinc-50 dark:bg-primary-darker shadow-sm dark:text-zinc-100",
+      outlined: "border border-primary text-primary dark:border-primary-darker dark:text-primary-darker shadow-sm",
+      plain: "text-primary dark:text-primary-darker shadow-none",
     },
     success: {
-      contained: "bg-green-500 text-white dark:bg-green-700 shadow-sm",
-      outlined: "border border-green-500 text-green-500 dark:border-green-700 dark:text-green-700 shadow-sm",
-      plain: "text-green-500 dark:text-green-700 shadow-none",
+      contained: "bg-success text-zinc-50 dark:bg-success-darker shadow-sm",
+      outlined: "border border-success text-success dark:border-success-darker dark:text-success-darker shadow-sm",
+      plain: "text-success dark:text-success-darker shadow-none",
     },
     warning: {
-      contained: "bg-yellow-500 text-white dark:bg-yellow-700 shadow-sm",
-      outlined: "border border-yellow-500 text-yellow-500 dark:border-yellow-700 dark:text-yellow-700 shadow-sm",
-      plain: "text-yellow-500 dark:text-yellow-700 shadow-none",
+      contained: "bg-warning text-zinc-50 dark:bg-warning-darker shadow-sm",
+      outlined: "border border-warning text-warning dark:border-warning-darker dark:text-warning-darker shadow-sm",
+      plain: "text-warning dark:text-warning-darker shadow-none",
     },
     error: {
-      contained: "bg-red-500 text-white dark:bg-red-700 shadow-sm",
-      outlined: "border border-red-500 text-red-500 dark:border-red-700 dark:text-red-700 shadow-sm",
-      plain: "text-red-500 dark:text-red-700 shadow-none",
+      contained: "bg-error text-zinc-50 dark:bg-error-darker shadow-sm",
+      outlined: "border border-error text-error dark:border-error-darker dark:text-error-darker shadow-sm",
+      plain: "text-error dark:text-error-darker shadow-none",
     },
   };
 
@@ -60,7 +60,6 @@ const Button: React.FC<Props> = ({
     md: "text-sm px-3 py-2 h-9",
     lg: "text-base px-4 py-2 h-11",
   };
-
   const interactiveClasses = isInteractive ? "cursor-pointer hover:opacity-80" : "opacity-60 cursor-not-allowed shadow-none";
   const buttonClasses = cn(
     baseClasses,
