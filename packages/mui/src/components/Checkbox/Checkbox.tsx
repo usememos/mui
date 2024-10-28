@@ -5,9 +5,10 @@ import { cn } from "@/common/utils";
 interface Props extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "size"> {
   size?: "sm" | "md" | "lg";
   label?: string;
+  ref?: React.Ref<HTMLInputElement>;
 }
 
-const Checkbox: React.FC<Props> = ({ size = "md", checked = false, className, disabled = false, onChange, label, ...rest }: Props) => {
+const Checkbox: React.FC<Props> = ({ size = "md", checked = false, className, disabled = false, onChange, label, ref, ...rest }: Props) => {
   const isInteractive = !disabled;
 
   const sizeClasses = {
@@ -19,15 +20,16 @@ const Checkbox: React.FC<Props> = ({ size = "md", checked = false, className, di
   const baseClasses = "relative flex items-center justify-center border rounded gap-2";
   const interactiveClasses = isInteractive ? "cursor-pointer" : "";
   const checkedClasses = checked
-    ? "bg-primary border-primary dark:bg-primary dark:border-primary"
+    ? "bg-primary border-primary dark:bg-primary-darker dark:border-primary-darker"
     : "bg-white border-zinc-300 dark:bg-zinc-800 dark:border-zinc-600";
-  const labelClasses = cn("dark:text-zinc-100", size === "sm" && "text-sm", size === "md" && "text-base", size === "lg" && "text-lg");
+  const labelClasses = cn("text-zinc-900 dark:text-zinc-100", `text-${size}`);
 
   return (
     <label className="flex items-center gap-2">
       <div className={cn(baseClasses, sizeClasses[size], interactiveClasses, checkedClasses, className)}>
-        {checked && <CheckIcon className="text-white dark:text-zinc-800" />}
+        {checked && <CheckIcon className="text-zinc-50 dark:text-zinc-100" />}
         <input
+          ref={ref}
           type="checkbox"
           checked={checked}
           onChange={(e) => {
@@ -45,4 +47,4 @@ const Checkbox: React.FC<Props> = ({ size = "md", checked = false, className, di
   );
 };
 
-export default Checkbox;
+export default React.forwardRef((props: Props, ref: React.Ref<HTMLInputElement>) => <Checkbox {...props} ref={ref} />);

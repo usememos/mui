@@ -1,10 +1,13 @@
-import { Button } from "@usememos/mui";
+"use client";
+
+import { Button, Checkbox } from "@usememos/mui";
 import { ChevronLeftIcon, SendIcon, XIcon } from "lucide-react";
 import React from "react";
 
 export default function Home() {
   return (
     <div className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
+      <Checkbox checked label="test" onChange={() => {}} />
       <Button color="primary" variant="contained">
         {"This is Button"}
       </Button>

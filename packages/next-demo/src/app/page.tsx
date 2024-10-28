@@ -7,6 +7,7 @@ export default function Home() {
       <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
         <Link href="/components/button">Button</Link>
         <Link href="/components/checkbox">Checkbox</Link>
+        <Link href="/components/input">Input</Link>
       </main>
     </div>
   );
