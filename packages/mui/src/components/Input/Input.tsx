@@ -6,7 +6,6 @@ interface Props extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "size"
   fullWidth?: boolean;
   startDecorator?: React.ReactNode;
   endDecorator?: React.ReactNode;
-  ref?: React.Ref<HTMLInputElement>;
 }
 
 const Input: React.FC<Props> = ({
@@ -17,7 +16,6 @@ const Input: React.FC<Props> = ({
   startDecorator,
   endDecorator,
   onChange,
-  ref,
   ...rest
 }: Props) => {
   const isInteractive = !disabled;
@@ -45,7 +43,6 @@ const Input: React.FC<Props> = ({
     >
       {startDecorator && <div className="mr-2 shrink-0">{startDecorator}</div>}
       <input
-        ref={ref}
         onChange={(e) => {
           if (isInteractive && onChange) {
             onChange(e);
@@ -60,6 +57,4 @@ const Input: React.FC<Props> = ({
   );
 };
 
-Input.displayName = "Input";
-
-export default React.forwardRef((props: Props, ref: React.Ref<HTMLInputElement>) => <Input {...props} ref={ref} />);
+export default Input;
