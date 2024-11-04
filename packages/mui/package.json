@@ -1,6 +1,6 @@
 {
   "name": "@usememos/mui",
-  "version": "0.0.1-alpha.24",
+  "version": "0.0.1-alpha.25",
   "license": "MIT",
   "main": "dist/index.js",
   "module": "dist/index.mjs",

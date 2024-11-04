@@ -32,7 +32,7 @@ const Input: React.FC<Props> = ({
         "flex items-center box-border border rounded-md shadow-sm",
         "focus-within:ring-1 focus-within:ring-primary focus-within:border-primary",
         sizeClasses[size],
-        "dark:bg-zinc-900 dark:text-zinc-100 dark:border-zinc-800",
+        "dark:bg-zinc-900 dark:text-zinc-200 dark:border-zinc-800",
         "dark:focus-within:ring-primary-darker dark:focus-within:border-primary-darker",
         {
           "cursor-not-allowed opacity-50": !isInteractive,

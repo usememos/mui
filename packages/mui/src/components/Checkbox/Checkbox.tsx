@@ -21,12 +21,12 @@ const Checkbox: React.FC<Props> = ({ size = "md", checked = false, className, di
   const checkedClasses = checked
     ? "bg-primary border-primary dark:bg-primary-darker dark:border-primary-darker"
     : "bg-white border-zinc-300 dark:bg-zinc-800 dark:border-zinc-600";
-  const labelClasses = cn("text-zinc-900 dark:text-zinc-100 select-none", `text-${size}`);
+  const labelClasses = cn("text-zinc-900 dark:text-zinc-200 select-none", `text-${size}`);
 
   return (
     <label className={cn("flex items-center gap-2", interactiveClasses)}>
       <div className={cn(baseClasses, sizeClasses[size], checkedClasses, className)}>
-        {checked && <CheckIcon className="text-zinc-50 dark:text-zinc-100" />}
+        {checked && <CheckIcon className="text-zinc-50 dark:text-zinc-200" />}
         <input
           type="checkbox"
           checked={checked}
