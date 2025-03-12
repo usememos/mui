@@ -7,4 +7,9 @@ export default [
   { languageOptions: { globals: globals.browser } },
   ...tseslint.configs.recommended,
   pluginReact.configs.flat.recommended,
+  {
+    rules: {
+      "@typescript-eslint/no-explicit-any": "off",
+    },
+  },
 ];
