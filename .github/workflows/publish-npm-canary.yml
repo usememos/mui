@@ -1,4 +1,4 @@
-name: Publish npm package with pnpm (beta)
+name: Publish npm package
 
 on:
   push:
@@ -18,8 +18,8 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '22'
-          registry-url: 'https://registry.npmjs.org'
+          node-version: "22"
+          registry-url: "https://registry.npmjs.org"
 
       # Install pnpm
       - name: Install pnpm
@@ -34,25 +34,25 @@ jobs:
         working-directory: ./packages/mui
         run: pnpm run build
 
-      # Set beta version
-      - name: Set beta version
+      # Set version
+      - name: Set canary version
         id: set-version
         working-directory: ./packages/mui
         run: |
           # Get the current version
           CURRENT_VERSION=$(pnpm version --json | jq -r '.["@usememos/mui"]')
-          # Generate a beta version (e.g., 0.1.0-beta.20231025120000)
-          BETA_VERSION="${CURRENT_VERSION}-beta.$(date +%Y%m%d%H%M%S)"
+          # Generate a canary version (e.g., 0.1.0-20231025120000)
+          VERSION="${CURRENT_VERSION}-$(date +%Y%m%d%H%M%S)"
           # Set the new version
-          pnpm version $BETA_VERSION --no-git-tag-version
+          pnpm version $VERSION --no-git-tag-version
           # Output the new version
-          echo "New beta version: $BETA_VERSION"
-          echo "beta_version=$BETA_VERSION" >> $GITHUB_OUTPUT
+          echo "New version: $VERSION"
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
 
-      # Publish the dist directory to npm with the beta tag
-      - name: Publish to npm (beta)
+      # Publish the dist directory to npm
+      - name: Publish to npm
         working-directory: ./packages/mui
         run: |
-          pnpm publish --tag beta --no-git-checks
+          pnpm publish --no-git-checks
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
