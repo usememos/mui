@@ -10,7 +10,7 @@
     "README.md"
   ],
   "scripts": {
-    "build": "tsup src/index.ts --format esm,cjs --dts"
+    "build": "tsup src/index.ts --format esm --dts"
   },
   "devDependencies": {
     "@swc/core": "^1.7.40",
