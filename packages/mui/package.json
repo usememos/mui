@@ -2,9 +2,9 @@
   "name": "@usememos/mui",
   "version": "0.1.0",
   "license": "MIT",
-  "main": "dist/index.js",
+  "main": "dist/index.mjs",
   "module": "dist/index.mjs",
-  "types": "dist/index.d.ts",
+  "types": "dist/index.d.mts",
   "files": [
     "dist",
     "README.md"
