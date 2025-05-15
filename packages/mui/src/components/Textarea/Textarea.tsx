@@ -27,10 +27,10 @@ const Textarea: React.FC<Props> = ({ size = "md", className, disabled = false, f
       }}
       disabled={disabled}
       className={cn(
-        "block rounded-md border shadow-sm",
-        "focus:outline-none focus-within:ring-1 focus-within:ring-primary focus-within:border-primary",
-        "bg-white dark:bg-zinc-900 dark:text-zinc-200 dark:border-zinc-800",
-        "dark:focus-within:ring-primary-darker dark:focus-within:border-primary-darker",
+        "block outline-none rounded-lg border-2 border-zinc-100 dark:border-zinc-700",
+        "bg-zinc-100 dark:bg-zinc-700",
+        "dark:text-zinc-200",
+        "focus:bg-white dark:focus:bg-zinc-900",
         {
           "cursor-not-allowed opacity-50": !isInteractive,
           "w-full": fullWidth,

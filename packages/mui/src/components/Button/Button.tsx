@@ -26,7 +26,7 @@ const Button = React.forwardRef<HTMLButtonElement, Props>(
     }: Props,
     ref
   ) => {
-    const baseClasses = "border-box inline-flex items-center justify-center rounded-md";
+    const baseClasses = "border-box inline-flex items-center justify-center rounded-lg";
     const isInteractive = !disabled;
 
     const colorClasses = {

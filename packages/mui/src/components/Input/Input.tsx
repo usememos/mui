@@ -35,10 +35,10 @@ const Input: React.FC<Props> = ({
   return (
     <div
       className={cn(
-        "flex items-center box-border border rounded-md shadow-sm",
-        "focus-within:ring-1 focus-within:ring-primary focus-within:border-primary",
-        "dark:bg-zinc-900 dark:text-zinc-200 dark:border-zinc-800",
-        "dark:focus-within:ring-primary-darker dark:focus-within:border-primary-darker",
+        "flex items-center box-border rounded-lg border-2 border-zinc-100 dark:border-zinc-700",
+        "bg-zinc-100 dark:bg-zinc-700",
+        "dark:text-zinc-200",
+        "focus-within:bg-white dark:focus-within:bg-zinc-900",
         {
           "cursor-not-allowed opacity-50": !isInteractive,
           "w-full": fullWidth,
@@ -55,7 +55,7 @@ const Input: React.FC<Props> = ({
           }
         }}
         disabled={disabled}
-        className={cn("focus:outline-none w-full bg-transparent", inputSizeClasses[size])}
+        className={cn("outline-none w-full bg-transparent", inputSizeClasses[size])}
         {...rest}
       />
       {endDecorator && <div className="mr-2 shrink-0">{endDecorator}</div>}
