@@ -24,13 +24,14 @@ export default function Home() {
         {"This is Button"}
       </Button>
 
-      <Button className="!rounded-xl" variant="plain">
+      <Button variant="plain">
         <ChevronLeftIcon className="w-5 h-auto opacity-70 mr-1" />
         Collapse
       </Button>
       <Button size="sm">
         <XIcon />
       </Button>
+      <Button size="lg">Collapse</Button>
 
       <Button color="primary">
         <span>Save</span>

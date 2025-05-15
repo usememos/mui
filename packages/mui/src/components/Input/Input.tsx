@@ -1,8 +1,7 @@
 import React from "react";
 import { cn } from "@/common/utils";
 
-interface Props
-  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "size"> {
+interface Props extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "size"> {
   size?: "sm" | "md" | "lg";
   fullWidth?: boolean;
   startDecorator?: React.ReactNode;
@@ -22,15 +21,15 @@ const Input: React.FC<Props> = ({
   const isInteractive = !disabled;
 
   const sizeClasses = {
-    sm: "h-8 px-2",
-    md: "h-9 px-3",
-    lg: "h-11 px-4",
+    sm: "h-6",
+    md: "h-8",
+    lg: "h-10",
   };
 
   const inputSizeClasses = {
-    sm: "text-sm",
-    md: "text-base",
-    lg: "text-lg",
+    sm: "text-sm px-2",
+    md: "text-sm px-2",
+    lg: "text-base px-3",
   };
 
   return (
@@ -44,6 +43,7 @@ const Input: React.FC<Props> = ({
           "cursor-not-allowed opacity-50": !isInteractive,
           "w-full": fullWidth,
         },
+        sizeClasses[size],
         className
       )}
     >
@@ -55,11 +55,7 @@ const Input: React.FC<Props> = ({
           }
         }}
         disabled={disabled}
-        className={cn(
-          "focus:outline-none w-full bg-transparent",
-          sizeClasses[size],
-          inputSizeClasses[size]
-        )}
+        className={cn("focus:outline-none w-full bg-transparent", inputSizeClasses[size])}
         {...rest}
       />
       {endDecorator && <div className="mr-2 shrink-0">{endDecorator}</div>}
