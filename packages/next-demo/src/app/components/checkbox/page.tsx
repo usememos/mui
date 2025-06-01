@@ -1,6 +1,6 @@
 "use client";
 
-import { Checkbox } from "@usememos/mui";
+import { Checkbox, Switch } from "@usememos/mui";
 import React from "react";
 
 export default function Home() {
@@ -14,6 +14,7 @@ export default function Home() {
       <Checkbox size="sm" />
       <Checkbox size="lg" />
       <Checkbox label="YES" />
+      <Switch checked={checked} onChange={(e) => setChecked(e.target.checked)} />
     </div>
   );
 }
