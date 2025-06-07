@@ -1,3 +1,19 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #0d9488;
+  --color-primary-dark: #0f766e;
+  --color-primary-darker: #0d5a56;
+
+  --color-success: #16a34a;
+  --color-success-dark: #047857;
+  --color-success-darker: #03664a;
+
+  --color-danger: #dc2626;
+  --color-danger-dark: #b91c1c;
+  --color-danger-darker: #991b1b;
+
+  --color-warning: #ca8a04;
+  --color-warning-dark: #b45309;
+  --color-warning-darker: #92400e;
+}
