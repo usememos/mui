@@ -9,4 +9,4 @@ export {
   SelectSeparator,
   SelectScrollUpButton,
   SelectScrollDownButton,
-} from "./Select"
+} from "./Select";
