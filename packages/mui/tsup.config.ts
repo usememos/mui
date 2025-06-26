@@ -7,4 +7,5 @@ export default defineConfig({
   clean: true,
   external: ["react", "react-dom"],
   minify: true,
+  // CSS will be bundled inline through the index.ts import
 });

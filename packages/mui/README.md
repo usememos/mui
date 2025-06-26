@@ -67,6 +67,71 @@ This library uses Tailwind CSS v4 with CSS variables for theming. The default th
 }
 ```
 
+## Dark Mode
+
+This library includes built-in dark mode support with automatic switching based on system preference and manual control.
+
+### Automatic Dark Mode
+
+Components automatically switch to dark mode based on the user's system preference (`prefers-color-scheme: dark`).
+
+### Manual Dark Mode
+
+Toggle dark mode by adding or removing the `.dark` class on your root element:
+
+```tsx
+// Toggle dark mode
+document.documentElement.classList.toggle("dark");
+
+// Enable dark mode
+document.documentElement.classList.add("dark");
+
+// Disable dark mode
+document.documentElement.classList.remove("dark");
+```
+
+### React Hook Example
+
+```tsx
+import { useEffect, useState } from "react";
+
+function useDarkMode() {
+  const [isDark, setIsDark] = useState(false);
+
+  useEffect(() => {
+    const isDarkMode = document.documentElement.classList.contains("dark");
+    setIsDark(isDarkMode);
+  }, []);
+
+  const toggleDarkMode = () => {
+    document.documentElement.classList.toggle("dark");
+    setIsDark(!isDark);
+  };
+
+  return { isDark, toggleDarkMode };
+}
+```
+
+### Tailwind Configuration for Dark Mode
+
+Make sure your consuming project's `tailwind.config.js` includes dark mode support:
+
+```javascript
+module.exports = {
+  darkMode: ["class"], // Enable class-based dark mode
+  content: [
+    "./src/**/*.{js,ts,jsx,tsx}",
+    "./node_modules/@usememos/mui/**/*.{js,ts,jsx,tsx}", // Include the package
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+};
+```
+
+For more detailed dark mode usage, see [DARK_MODE_USAGE.md](./DARK_MODE_USAGE.md).
+
 ### Using with your own Tailwind configuration
 
 If you're using Tailwind CSS in your project, you can use the `cn` utility function to merge classes:
