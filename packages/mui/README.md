@@ -1,9 +1,17 @@
 # @usememos/mui
 
-A modern React component library built with [shadcn/ui](https://ui.shadcn.com/) and [Tailwind CSS v4](https://tailwindcss.com/).
+A modern React UI component library built with [shadcn/ui](https://ui.shadcn.com) components, powered by [Radix UI](https://radix-ui.com) primitives and styled with [Tailwind CSS](https://tailwindcss.com).
 
-[![npm version](https://img.shields.io/npm/v/@usememos/mui.svg)](https://www.npmjs.com/package/@usememos/mui)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+## Features
+
+- 🎨 **Modern Design**: Beautiful, accessible components with consistent design patterns
+- ⚡ **High Performance**: Optimized components built on Radix UI primitives
+- 🎯 **TypeScript**: Full TypeScript support with comprehensive type definitions
+- 🌙 **Dark Mode**: Built-in dark mode support
+- 📱 **Responsive**: Mobile-first responsive design
+- ♿ **Accessible**: WAI-ARIA compliant components
+- 🔧 **Customizable**: Easy to customize with Tailwind CSS
+- 📦 **Tree Shakable**: Import only what you need
 
 ## Installation
 
@@ -15,113 +23,26 @@ yarn add @usememos/mui
 pnpm add @usememos/mui
 ```
 
-## Usage
+## Setup
 
-### 1. Import the styles
+### 1. Install Dependencies
 
-Add the CSS import to your app's entry point (e.g., `App.tsx`, `index.tsx`, or `main.ts`):
+Make sure you have the required peer dependencies:
 
-```tsx
-import "@usememos/mui/styles.css";
+```bash
+npm install react react-dom
 ```
 
-### 2. Use the components
+### 2. Configure Tailwind CSS
 
-```tsx
-import { Button, Input, Checkbox, Switch, Textarea } from "@usememos/mui";
+Add the package to your `tailwind.config.js`:
 
-function App() {
-  return (
-    <div className="p-4 space-y-4">
-      <Button variant="default">Click me</Button>
-      <Button variant="destructive">Delete</Button>
-      <Button variant="outline">Cancel</Button>
-
-      <Input placeholder="Enter your name" />
-
-      <Textarea placeholder="Write your message..." />
-
-      <div className="flex items-center space-x-2">
-        <Checkbox id="terms" />
-        <label htmlFor="terms">Accept terms and conditions</label>
-      </div>
-
-      <Switch />
-    </div>
-  );
-}
-```
-
-## Styling
-
-This library uses Tailwind CSS v4 with CSS variables for theming. The default theme uses a slate color palette, but you can customize it by overriding the CSS variables in your app:
-
-```css
-:root {
-  --radius: 0.5rem;
-  --background: 0 0% 100%;
-  --foreground: 222.2 84% 4.9%;
-  --primary: 222.2 47.4% 11.2%;
-  --primary-foreground: 210 40% 98%;
-  /* ... other variables */
-}
-```
-
-## Dark Mode
-
-This library includes built-in dark mode support with automatic switching based on system preference and manual control.
-
-### Automatic Dark Mode
-
-Components automatically switch to dark mode based on the user's system preference (`prefers-color-scheme: dark`).
-
-### Manual Dark Mode
-
-Toggle dark mode by adding or removing the `.dark` class on your root element:
-
-```tsx
-// Toggle dark mode
-document.documentElement.classList.toggle("dark");
-
-// Enable dark mode
-document.documentElement.classList.add("dark");
-
-// Disable dark mode
-document.documentElement.classList.remove("dark");
-```
-
-### React Hook Example
-
-```tsx
-import { useEffect, useState } from "react";
-
-function useDarkMode() {
-  const [isDark, setIsDark] = useState(false);
-
-  useEffect(() => {
-    const isDarkMode = document.documentElement.classList.contains("dark");
-    setIsDark(isDarkMode);
-  }, []);
-
-  const toggleDarkMode = () => {
-    document.documentElement.classList.toggle("dark");
-    setIsDark(!isDark);
-  };
-
-  return { isDark, toggleDarkMode };
-}
-```
-
-### Tailwind Configuration for Dark Mode
-
-Make sure your consuming project's `tailwind.config.js` includes dark mode support:
-
-```javascript
+```js
+/** @type {import('tailwindcss').Config} */
 module.exports = {
-  darkMode: ["class"], // Enable class-based dark mode
   content: [
-    "./src/**/*.{js,ts,jsx,tsx}",
-    "./node_modules/@usememos/mui/**/*.{js,ts,jsx,tsx}", // Include the package
+    // ... your content paths
+    "./node_modules/@usememos/mui/dist/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {},
@@ -130,39 +51,291 @@ module.exports = {
 };
 ```
 
-For more detailed dark mode usage, see [DARK_MODE_USAGE.md](./DARK_MODE_USAGE.md).
+### 3. Import Styles
 
-### Using with your own Tailwind configuration
-
-If you're using Tailwind CSS in your project, you can use the `cn` utility function to merge classes:
+Import the CSS file in your main application file:
 
 ```tsx
-import { Button, cn } from "@usememos/mui";
-
-<Button className={cn("custom-class", "mt-4")}>Custom Button</Button>;
+import "@usememos/mui/styles";
 ```
 
-## TypeScript
+## Usage
 
-This library is written in TypeScript and provides full type definitions out of the box.
+```tsx
+import { Button, Input, Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@usememos/mui";
 
-## Browser Support
+function App() {
+  return (
+    <div className="p-6 space-y-4">
+      <Button>Click me</Button>
 
-- Chrome (latest)
-- Firefox (latest)
-- Safari (latest)
-- Edge (latest)
+      <Input placeholder="Enter your email" />
 
-## Contributing
+      <Select>
+        <SelectTrigger>
+          <SelectValue placeholder="Select an option" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectItem value="option1">Option 1</SelectItem>
+          <SelectItem value="option2">Option 2</SelectItem>
+        </SelectContent>
+      </Select>
+    </div>
+  );
+}
+```
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+## Components
+
+### Form Components
+
+All form components support consistent sizing with three size variants:
+
+- `sm`: 32px height
+- `default`: 36px height
+- `lg`: 40px height
+
+#### Button
+
+```tsx
+import { Button } from "@usememos/mui";
+
+<Button variant="default" size="default">Default Button</Button>
+<Button variant="destructive" size="sm">Small Destructive</Button>
+<Button variant="outline" size="lg">Large Outline</Button>
+```
+
+**Props:**
+
+- `variant`: `"default" | "destructive" | "outline" | "secondary" | "ghost" | "link"`
+- `size`: `"sm" | "default" | "lg" | "icon"`
+- `asChild`: `boolean` - Render as child component
+
+#### Input
+
+```tsx
+import { Input } from "@usememos/mui";
+
+<Input placeholder="Enter text" />
+<Input type="email" placeholder="Email" />
+<Input type="password" placeholder="Password" />
+```
+
+#### Select
+
+```tsx
+import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@usememos/mui";
+
+<Select>
+  <SelectTrigger size="default">
+    <SelectValue placeholder="Choose an option" />
+  </SelectTrigger>
+  <SelectContent>
+    <SelectItem value="react">React</SelectItem>
+    <SelectItem value="vue">Vue</SelectItem>
+    <SelectItem value="angular">Angular</SelectItem>
+  </SelectContent>
+</Select>;
+```
+
+**SelectTrigger Props:**
+
+- `size`: `"sm" | "default" | "lg"`
+
+#### Textarea
+
+```tsx
+import { Textarea } from "@usememos/mui";
+
+<Textarea placeholder="Enter your message..." />;
+```
+
+#### Checkbox
+
+```tsx
+import { Checkbox } from "@usememos/mui";
+
+<Checkbox id="terms" />
+<label htmlFor="terms">Accept terms and conditions</label>
+```
+
+#### Switch
+
+```tsx
+import { Switch } from "@usememos/mui";
+
+<Switch id="notifications" />
+<label htmlFor="notifications">Enable notifications</label>
+```
+
+### Display Components
+
+#### Badge
+
+```tsx
+import { Badge } from "@usememos/mui";
+
+<Badge>Default</Badge>
+<Badge variant="secondary">Secondary</Badge>
+<Badge variant="destructive">Destructive</Badge>
+<Badge variant="outline">Outline</Badge>
+```
+
+#### Dialog
+
+```tsx
+import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@usememos/mui";
+
+<Dialog>
+  <DialogTrigger asChild>
+    <Button>Open Dialog</Button>
+  </DialogTrigger>
+  <DialogContent>
+    <DialogHeader>
+      <DialogTitle>Dialog Title</DialogTitle>
+      <DialogDescription>Dialog description goes here.</DialogDescription>
+    </DialogHeader>
+  </DialogContent>
+</Dialog>;
+```
+
+#### Tooltip
+
+```tsx
+import { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from "@usememos/mui";
+
+<TooltipProvider>
+  <Tooltip>
+    <TooltipTrigger>Hover me</TooltipTrigger>
+    <TooltipContent>
+      <p>Tooltip content</p>
+    </TooltipContent>
+  </Tooltip>
+</TooltipProvider>;
+```
+
+### Navigation Components
+
+#### Dropdown Menu
+
+```tsx
+import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "@usememos/mui";
+
+<DropdownMenu>
+  <DropdownMenuTrigger asChild>
+    <Button variant="outline">Open Menu</Button>
+  </DropdownMenuTrigger>
+  <DropdownMenuContent>
+    <DropdownMenuItem>Profile</DropdownMenuItem>
+    <DropdownMenuItem>Settings</DropdownMenuItem>
+    <DropdownMenuItem>Logout</DropdownMenuItem>
+  </DropdownMenuContent>
+</DropdownMenu>;
+```
+
+#### Sheet
+
+```tsx
+import { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetTitle } from "@usememos/mui";
+
+<Sheet>
+  <SheetTrigger asChild>
+    <Button>Open Sheet</Button>
+  </SheetTrigger>
+  <SheetContent>
+    <SheetHeader>
+      <SheetTitle>Sheet Title</SheetTitle>
+    </SheetHeader>
+    {/* Sheet content */}
+  </SheetContent>
+</Sheet>;
+```
+
+### Advanced Components
+
+#### Date Picker
+
+```tsx
+import { DatePicker } from "@usememos/mui";
+
+<DatePicker placeholder="Pick a date" onSelect={(date) => console.log(date)} />;
+```
+
+#### Calendar
+
+```tsx
+import { Calendar } from "@usememos/mui";
+
+<Calendar mode="single" selected={date} onSelect={setDate} />;
+```
+
+#### Sidebar
+
+```tsx
+import { Sidebar, SidebarProvider, SidebarTrigger, SidebarContent } from "@usememos/mui";
+
+<SidebarProvider>
+  <Sidebar>
+    <SidebarContent>{/* Sidebar content */}</SidebarContent>
+  </Sidebar>
+  <main>
+    <SidebarTrigger />
+    {/* Main content */}
+  </main>
+</SidebarProvider>;
+```
+
+## Customization
+
+### Theming
+
+The components use CSS custom properties for theming. You can customize the theme by overriding these variables:
+
+```css
+:root {
+  --color-background: oklch(100% 0 0);
+  --color-foreground: oklch(23.83% 0.052 265.75);
+  --color-primary: oklch(26.06% 0.052 265.75);
+  --color-primary-foreground: oklch(97.78% 0.001 247.86);
+  /* ... more variables */
+}
+```
+
+### Dark Mode
+
+Dark mode is supported out of the box. Add the `dark` class to your root element:
+
+```html
+<html class="dark">
+  <!-- Your app -->
+</html>
+```
+
+### Custom Styling
+
+All components accept a `className` prop for custom styling:
+
+```tsx
+<Button className="my-custom-styles">Custom Button</Button>
+```
+
+## Development
+
+### Demo App
+
+A demo application is available at `/apps/demo` showcasing all components:
+
+```bash
+cd apps/demo
+npm run dev
+```
+
+### Building
+
+```bash
+npm run build
+```
 
 ## License
 
-MIT © [Memos Team](https://github.com/usememos)
-
-## Links
-
-- [npm package](https://www.npmjs.com/package/@usememos/mui)
-- [GitHub repository](https://github.com/usememos/mui)
-- [Issue tracker](https://github.com/usememos/mui/issues)
+MIT © [usememos](https://github.com/usememos)
