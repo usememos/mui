@@ -55,15 +55,6 @@
   --sidebar-ring: hsl(217.2 91.2% 59.8%);
 }
 
-* {
-  border-color: theme(colors.border);
-}
-
-body {
-  background-color: theme(colors.background);
-  color: theme(colors.foreground);
-}
-
 :root {
   --sidebar: hsl(0 0% 98%);
   --sidebar-foreground: hsl(240 5.3% 26.1%);
@@ -87,10 +78,11 @@ body {
 }
 
 @layer base {
-  * {
+  .mui-theme * {
     @apply border-border outline-ring/50;
   }
-  body {
+  .mui-theme body,
+  .mui-theme {
     @apply bg-background text-foreground;
   }
 }
