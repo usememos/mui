@@ -77,6 +77,6 @@ jobs:
 
       - name: Publish to npm
         working-directory: ./packages/react
-        run: npm publish --tag canary --access public --provenance
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_CONFIG_PROVENANCE: "false"
+        run: npm publish --tag canary --access public

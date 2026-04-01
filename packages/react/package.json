@@ -153,5 +153,10 @@
     "design-system",
     "theme"
   ],
+  "repository": "https://github.com/usememos/mui",
+  "homepage": "https://github.com/usememos/mui",
+  "bugs": {
+    "url": "https://github.com/usememos/mui/issues"
+  },
   "license": "MIT"
 }
