@@ -1,0 +1,27 @@
+{
+  "name": "@usememos/docs",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "storybook dev -p 6006",
+    "build": "storybook build",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@usememos/mui": "workspace:*",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@storybook/addon-essentials": "^8.6.18",
+    "@storybook/addon-interactions": "^8.6.18",
+    "@storybook/react": "^8.6.18",
+    "@storybook/react-vite": "^8.6.18",
+    "@storybook/test": "^8.6.18",
+    "@types/react": "^18.3.23",
+    "@types/react-dom": "^18.3.7",
+    "storybook": "^8.6.18",
+    "typescript": "^6.0.2",
+    "vite": "^6.3.5"
+  }
+}

@@ -1,58 +1,82 @@
-name: Publish npm package
+name: Publish npm canary
 
 on:
   push:
     branches:
       - main
+    paths:
+      - ".github/workflows/publish-npm-canary.yml"
+      - "package.json"
+      - "pnpm-lock.yaml"
+      - "tsconfig.base.json"
+      - "vitest.config.ts"
+      - "packages/primitives/**"
+      - "packages/react/**"
+      - "packages/theme/**"
+  workflow_dispatch:
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+permissions:
+  contents: read
+  id-token: write
+
+concurrency:
+  group: publish-canary-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   publish:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
 
     steps:
-      # Check out the code
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      # Set up Node.js environment
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
         with:
-          node-version: "22"
+          version: 10.17.1
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: "pnpm"
           registry-url: "https://registry.npmjs.org"
 
-      # Install pnpm
-      - name: Install pnpm
-        run: npm install -g pnpm
-
-      # Install dependencies
       - name: Install dependencies
-        run: pnpm install
+        run: pnpm install --frozen-lockfile
 
-      # Run the build command
-      - name: Build project
-        working-directory: ./packages/mui
-        run: pnpm run build
+      - name: Install Playwright browser
+        run: pnpm exec playwright install --with-deps chromium
 
-      # Set version
+      - name: Typecheck
+        run: pnpm typecheck
+
+      - name: Run tests
+        run: pnpm test
+
+      - name: Build workspace
+        run: pnpm build
+
+      - name: Check package exports
+        run: pnpm check:packages
+
       - name: Set canary version
         id: set-version
-        working-directory: ./packages/mui
+        working-directory: ./packages/react
         run: |
-          # Get the current version
-          CURRENT_VERSION=$(pnpm version --json | jq -r '.["@usememos/mui"]')
-          # Generate a canary version (e.g., 0.1.0-20231025120000)
-          VERSION="${CURRENT_VERSION}-$(date +%Y%m%d%H%M%S)"
-          # Set the new version
-          pnpm version $VERSION --no-git-tag-version
-          # Output the new version
-          echo "New version: $VERSION"
-          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          CURRENT_VERSION=$(node --input-type=module -e "import fs from 'node:fs'; const pkg = JSON.parse(fs.readFileSync('package.json', 'utf8')); process.stdout.write(pkg.version);")
+          TIMESTAMP=$(date -u +%Y%m%d%H%M%S)
+          VERSION="${CURRENT_VERSION}-canary.${TIMESTAMP}"
+          npm version "$VERSION" --no-git-tag-version
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
 
-      # Publish the dist directory to npm
       - name: Publish to npm
-        working-directory: ./packages/mui
-        run: |
-          pnpm publish --no-git-checks
+        working-directory: ./packages/react
+        run: npm publish --tag canary --access public --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

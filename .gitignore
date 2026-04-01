@@ -38,3 +38,8 @@ coverage/
 # Cache directories
 .cache/
 .parcel-cache/
+storybook-static/
+
+# Vitest browser artifacts
+.vitest-attachments/
+packages/react/src/tests/__screenshots__/

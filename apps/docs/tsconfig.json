@@ -1,0 +1,9 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "paths": {
+      "@usememos/mui": ["../../packages/react/src/index.ts"]
+    }
+  },
+  "include": [".storybook", "stories"]
+}

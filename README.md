@@ -1,1 +1,30 @@
-packages/mui/README.md
+# @usememos/mui
+
+React UI library workspace for `@usememos/mui`.
+
+## Workspace
+
+- `packages/react`: published package
+- `packages/primitives`: internal Base UI wrappers
+- `packages/theme`: shared CSS theme output
+- `apps/docs`: Storybook docs
+
+## Development
+
+```bash
+pnpm install
+pnpm typecheck
+pnpm test
+pnpm build
+pnpm storybook
+```
+
+Vitest browser tests use Playwright:
+
+```bash
+pnpm exec playwright install chromium
+```
+
+## Package Docs
+
+See [packages/react/README.md](/Users/steven/Projects/usememos/mui/packages/react/README.md) for package usage, public entrypoints, and examples.

@@ -1,4 +1,32 @@
 {
   "name": "mui-monorepo",
-  "private": true
+  "private": true,
+  "scripts": {
+    "build": "pnpm --filter @usememos/mui build && pnpm --filter @usememos/docs build",
+    "typecheck": "pnpm --filter @usememos/mui typecheck && pnpm --filter @usememos/docs typecheck",
+    "test": "pnpm exec vitest run",
+    "test:browser": "pnpm exec vitest run --project browser",
+    "test:unit": "pnpm exec vitest run --project unit",
+    "storybook": "pnpm --filter @usememos/docs dev",
+    "check:packages": "pnpm --filter @usememos/mui build && pnpm --filter @usememos/mui check:package"
+  },
+  "devDependencies": {
+    "@arethetypeswrong/cli": "^0.17.4",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.3.0",
+    "@testing-library/user-event": "^14.6.1",
+    "@types/node": "^22.15.18",
+    "@types/react": "^18.3.23",
+    "@types/react-dom": "^18.3.7",
+    "@vitejs/plugin-react": "^5.0.2",
+    "@vitest/browser-playwright": "^4.1.2",
+    "axe-core": "^4.10.3",
+    "jsdom": "^26.1.0",
+    "playwright": "^1.58.2",
+    "publint": "^0.3.12",
+    "typescript": "^6.0.2",
+    "vitest": "^4.1.2",
+    "vitest-axe": "^0.1.0",
+    "vitest-browser-react": "^2.1.0"
+  }
 }
