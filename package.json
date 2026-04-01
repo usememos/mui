@@ -7,7 +7,7 @@
     "test": "pnpm exec vitest run",
     "test:browser": "pnpm exec vitest run --project browser",
     "test:unit": "pnpm exec vitest run --project unit",
-    "storybook": "pnpm --filter @usememos/docs dev",
+    "docs": "pnpm --filter @usememos/docs dev",
     "check:packages": "pnpm --filter @usememos/mui build && pnpm --filter @usememos/mui check:package"
   },
   "devDependencies": {

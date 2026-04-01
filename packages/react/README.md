@@ -91,7 +91,7 @@ Components also accept `className` for local overrides:
 ## Development
 
 ```bash
-pnpm storybook
+pnpm docs
 pnpm test
 pnpm test:browser
 pnpm build

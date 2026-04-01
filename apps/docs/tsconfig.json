@@ -1,9 +1,10 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
+    "types": ["vite/client"],
     "paths": {
       "@usememos/mui": ["../../packages/react/src/index.ts"]
     }
   },
-  "include": [".storybook", "stories"]
+  "include": ["src", "vite.config.ts", "src/vite-env.d.ts"]
 }

@@ -7,7 +7,7 @@ React UI library workspace for `@usememos/mui`.
 - `packages/react`: published package
 - `packages/primitives`: internal Base UI wrappers
 - `packages/theme`: shared CSS theme output
-- `apps/docs`: Storybook docs
+- `apps/docs`: Vite docs website
 
 ## Development
 
@@ -16,7 +16,7 @@ pnpm install
 pnpm typecheck
 pnpm test
 pnpm build
-pnpm storybook
+pnpm docs
 ```
 
 Vitest browser tests use Playwright:
