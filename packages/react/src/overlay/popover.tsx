@@ -1,6 +1,7 @@
 import * as React from "react";
 
 import { Popover as PrimitivePopover } from "../../../primitives/src/overlay/popover";
+import { useOverlayLayerProps } from "./layer-context";
 import { cx } from "../shared/cx";
 
 type PopoverRootProps = {
@@ -79,12 +80,14 @@ function Content({
   sideOffset = 4,
   ...props
 }: PopoverContentProps) {
+  const layerProps = useOverlayLayerProps(props);
+
   return (
     <PrimitivePopover.Portal>
       <PrimitivePopover.Content
         className={cx("mui-popover__content", className)}
         sideOffset={sideOffset}
-        {...(props as React.ComponentPropsWithoutRef<typeof PrimitivePopover.Content>)}
+        {...(layerProps as React.ComponentPropsWithoutRef<typeof PrimitivePopover.Content>)}
       />
     </PrimitivePopover.Portal>
   );

@@ -2,6 +2,7 @@ import { XIcon } from "lucide-react";
 import * as React from "react";
 
 import { Dialog as PrimitiveDialog } from "../../../primitives/src/overlay/dialog";
+import { OverlayLayerProvider } from "./layer-context";
 import { cx } from "../shared/cx";
 
 type ContentProps = React.ComponentPropsWithoutRef<typeof PrimitiveDialog.Content> & {
@@ -61,8 +62,10 @@ const Content = React.forwardRef<
         className={cx("mui-dialog__content", className)}
         {...props}
       >
-        {children}
-        {showCloseButton ? <Close {...closeProps} /> : null}
+        <OverlayLayerProvider value="modal">
+          {children}
+          {showCloseButton ? <Close {...closeProps} /> : null}
+        </OverlayLayerProvider>
       </PrimitiveDialog.Content>
     </Portal>
   );

@@ -5,6 +5,7 @@ export default defineConfig({
     index: "src/index.ts",
     button: "src/button.ts",
     checkbox: "src/checkbox.ts",
+    input: "src/input.ts",
     dialog: "src/dialog.ts",
     "dropdown-menu": "src/dropdown-menu.ts",
     popover: "src/popover.ts",

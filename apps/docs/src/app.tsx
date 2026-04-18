@@ -12,6 +12,7 @@ import {
   Checkbox,
   Dialog,
   DropdownMenu,
+  Input,
   Popover,
   RadioGroup,
   Select,
@@ -66,6 +67,12 @@ const components: ComponentMeta[] = [
     href: "/docs/components/select",
     summary: "Base UI powered select surface with labels, groups, and item indicators.",
     packageImport: 'import { Select } from "@usememos/mui";',
+  },
+  {
+    name: "Input",
+    href: "/docs/components/input",
+    summary: "Native text input styled on the same form control sizing scale.",
+    packageImport: 'import { Input } from "@usememos/mui";',
   },
   {
     name: "Checkbox",
@@ -252,12 +259,10 @@ const docsPages: Record<string, DocPage> = {
             description="The button uses the same spacing and radius tokens as the rest of the library."
           >
             <div className="button-row">
+              <Button size="xs">Extra Small</Button>
               <Button size="sm">Small</Button>
-              <Button size="md">Medium</Button>
+              <Button size="md">Base</Button>
               <Button size="lg">Large</Button>
-              <Button size="icon" aria-label="Icon button">
-                +
-              </Button>
             </div>
           </ExampleFrame>
         </DocSection>
@@ -304,6 +309,26 @@ const docsPages: Record<string, DocPage> = {
       </>
     ),
   },
+  input: {
+    title: "Input",
+    eyebrow: "Foundation",
+    intro:
+      "Input keeps the native element surface and maps sizing to the same data attributes used by the rest of the form controls.",
+    section: "Components",
+    body: (
+      <>
+        <DocSection title="Live demo">
+          <InputPreview />
+        </DocSection>
+        <DocSection title="Import">
+          <CodeBlock
+            code={`import { Input } from "@usememos/mui";\n\n<Input aria-label="Project name" placeholder="Project name" />\n<Input size="sm" aria-label="Slug" placeholder="memo-ui" />`}
+            language="tsx"
+          />
+        </DocSection>
+      </>
+    ),
+  },
   controls: {
     title: "Controls",
     eyebrow: "Foundation",
@@ -337,6 +362,7 @@ const sidebarGroups = [
       { title: "Button", href: "/docs/components/button" },
       { title: "Dialog", href: "/docs/components/dialog" },
       { title: "Select", href: "/docs/components/select" },
+      { title: "Input", href: "/docs/components/input" },
       { title: "Controls", href: "/docs/components/controls" },
       { title: "Lightweight Overlays", href: "/docs/components/overlays" },
     ],
@@ -683,9 +709,34 @@ function SelectPreview() {
   );
 }
 
+function InputPreview() {
+  const controlSizes = ["xs", "sm", "md", "lg"] as const;
+
+  return (
+    <ExampleFrame
+      title="Shared field sizing"
+      description="The native input receives the same size tokens and focus treatment as select and boolean controls."
+    >
+      <div className="input-demo">
+        {controlSizes.map((size) => (
+          <label className="input-demo__row" key={size}>
+            <span>{size.toUpperCase()}</span>
+            <Input
+              aria-label={`${size} input`}
+              placeholder={size === "xs" ? "Short label" : "Project name"}
+              size={size}
+            />
+          </label>
+        ))}
+      </div>
+    </ExampleFrame>
+  );
+}
+
 function ControlsPreview() {
   const [notifications, setNotifications] = React.useState(true);
   const [selectedChannel, setSelectedChannel] = React.useState("stable");
+  const controlSizes = ["xs", "sm", "md", "lg"] as const;
 
   return (
     <>
@@ -695,6 +746,31 @@ function ControlsPreview() {
           description="These primitives stay visually restrained so they can sit next to heavier surfaces without competing for attention."
         >
           <div className="controls-demo">
+            <div className="control-size-grid">
+              {controlSizes.map((size) => (
+                <div className="control-size-grid__row" key={size}>
+                  <span>{size.toUpperCase()}</span>
+                  <Select.Root defaultValue="comfortable">
+                    <Select.Trigger aria-label={`${size} density`} size={size}>
+                      <Select.Value />
+                    </Select.Trigger>
+                    <Select.Content>
+                      <Select.Item value="comfortable">Comfortable</Select.Item>
+                      <Select.Item value="compact">Compact</Select.Item>
+                    </Select.Content>
+                  </Select.Root>
+                  <Checkbox defaultChecked size={size} />
+                  <Switch
+                    checked={notifications}
+                    onCheckedChange={setNotifications}
+                    size={size}
+                  />
+                  <RadioGroup.Root defaultValue="stable">
+                    <RadioGroup.Item aria-label={`${size} radio`} size={size} value="stable" />
+                  </RadioGroup.Root>
+                </div>
+              ))}
+            </div>
             <label className="control-row">
               <Checkbox defaultChecked />
               <span>Enable release notes</span>

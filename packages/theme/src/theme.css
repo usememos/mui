@@ -34,24 +34,47 @@
     --mui-text-lg: 1.125rem;
     --mui-text-xl: 1.25rem;
     --mui-text-2xl: 1.5rem;
-    --mui-control-height-sm: 2rem;
+    --mui-control-height-xs: 1.25rem;
+    --mui-control-height-sm: 1.625rem;
     --mui-control-height-md: 2.25rem;
     --mui-control-height-lg: 2.5rem;
-    --mui-control-padding-x-sm: 0.625rem;
+    --mui-control-padding-x-xs: 0.375rem;
+    --mui-control-padding-x-sm: 0.5rem;
     --mui-control-padding-x-md: 0.75rem;
-    --mui-control-padding-x-lg: 0.875rem;
+    --mui-control-padding-x-lg: 1rem;
     --mui-control-gap-sm: 0.25rem;
     --mui-control-gap-md: 0.375rem;
     --mui-control-gap-lg: 0.5rem;
+    --mui-control-icon-size-xs: 0.875rem;
     --mui-control-icon-size-sm: 0.875rem;
     --mui-control-icon-size-md: 1rem;
-    --mui-control-icon-size-lg: 1rem;
+    --mui-control-icon-size-lg: 1.125rem;
+    --mui-control-font-size-xs: var(--mui-text-xs);
     --mui-control-font-size-sm: var(--mui-text-xs);
-    --mui-control-font-size-md: var(--mui-text-sm);
-    --mui-control-font-size-lg: var(--mui-text-sm);
+    --mui-control-font-size-md: 1rem;
+    --mui-control-font-size-lg: 1rem;
+    --mui-choice-size-xs: 0.75rem;
+    --mui-choice-size-sm: 0.875rem;
+    --mui-choice-size-md: 1rem;
+    --mui-choice-size-lg: 1.125rem;
+    --mui-switch-width-xs: 1.75rem;
+    --mui-switch-width-sm: 2rem;
+    --mui-switch-width-md: 2.25rem;
+    --mui-switch-width-lg: 2.75rem;
+    --mui-switch-height-xs: 1rem;
+    --mui-switch-height-sm: 1.125rem;
+    --mui-switch-height-md: 1.25rem;
+    --mui-switch-height-lg: 1.5rem;
     --mui-shadow-sm: 0 1px 2px rgb(0 0 0 / 0.05);
     --mui-shadow-floating: 0 10px 28px rgb(0 0 0 / 0.12), 0 2px 8px rgb(0 0 0 / 0.06);
     --mui-shadow-modal: 0 24px 72px rgb(0 0 0 / 0.18), 0 6px 18px rgb(0 0 0 / 0.08);
+    --mui-z-index-dropdown: 1000;
+    --mui-z-index-sticky: 1100;
+    --mui-z-index-overlay: 1300;
+    --mui-z-index-modal: 1400;
+    --mui-z-index-modal-popover: 1500;
+    --mui-z-index-popover: 1200;
+    --mui-z-index-tooltip: 1200;
     --mui-color-background: oklch(0.985 0.0015 260);
     --mui-color-foreground: oklch(0.205 0.004 260);
     --mui-color-card: oklch(1 0 0);
@@ -182,7 +205,10 @@
     flex: 0 0 auto;
   }
 
-  .mui-button:focus-visible,
+  .mui-button:focus-visible {
+    border-color: var(--mui-color-ring);
+  }
+
   .mui-input:focus-visible,
   .mui-textarea:focus-visible,
   .mui-checkbox:focus-visible,
@@ -190,34 +216,50 @@
   .mui-radio-group__item:focus-visible,
   .mui-select__trigger:focus-visible {
     border-color: var(--mui-color-ring);
-    box-shadow: 0 0 0 2px var(--mui-color-ring);
+  }
+
+  .mui-button[data-size="xs"] {
+    min-height: var(--mui-control-height-xs);
+    padding: 0 var(--mui-control-padding-x-xs);
+    gap: var(--mui-control-gap-sm);
+    border-radius: var(--mui-radius-md);
+    font-size: var(--mui-control-font-size-xs);
   }
 
   .mui-button[data-size="sm"] {
     min-height: var(--mui-control-height-sm);
     padding: 0 var(--mui-control-padding-x-sm);
     gap: var(--mui-control-gap-sm);
+    border-radius: var(--mui-radius-md);
     font-size: var(--mui-control-font-size-sm);
   }
 
   .mui-button[data-size="md"] {
     min-height: var(--mui-control-height-md);
     padding: 0 var(--mui-control-padding-x-md);
+    border-radius: var(--mui-radius-xl);
+    font-size: var(--mui-control-font-size-md);
   }
 
   .mui-button[data-size="lg"] {
     min-height: var(--mui-control-height-lg);
     padding: 0 var(--mui-control-padding-x-lg);
     gap: var(--mui-control-gap-lg);
+    border-radius: var(--mui-radius-xl);
     font-size: var(--mui-control-font-size-lg);
   }
 
   .mui-button[data-size="icon"] {
-    width: var(--mui-control-height-md);
-    height: var(--mui-control-height-md);
-    min-height: var(--mui-control-height-md);
+    width: var(--mui-control-height-xs);
+    height: var(--mui-control-height-xs);
+    min-height: var(--mui-control-height-xs);
     padding: 0;
     gap: 0;
+  }
+
+  .mui-button[data-size="xs"] > svg {
+    width: var(--mui-control-icon-size-xs);
+    height: var(--mui-control-icon-size-xs);
   }
 
   .mui-button[data-size="sm"] > svg {
@@ -300,7 +342,7 @@
     appearance: none;
     width: 100%;
     border: 1px solid var(--mui-color-input);
-    border-radius: var(--mui-radius-lg);
+    border-radius: var(--mui-radius-xl);
     background: var(--mui-color-card);
     color: var(--mui-color-foreground);
     font-size: var(--mui-control-font-size-md);
@@ -313,10 +355,76 @@
     padding: 0 var(--mui-control-padding-x-md);
   }
 
+  .mui-input[data-size="xs"],
+  .mui-select__trigger[data-size="xs"] {
+    min-height: var(--mui-control-height-xs);
+    padding: 0 var(--mui-control-padding-x-xs);
+    border-radius: var(--mui-radius-md);
+    font-size: var(--mui-control-font-size-xs);
+  }
+
+  .mui-input[data-size="sm"],
+  .mui-select__trigger[data-size="sm"] {
+    min-height: var(--mui-control-height-sm);
+    padding: 0 var(--mui-control-padding-x-sm);
+    border-radius: var(--mui-radius-md);
+    font-size: var(--mui-control-font-size-sm);
+  }
+
+  .mui-input[data-size="md"],
+  .mui-select__trigger[data-size="md"] {
+    min-height: var(--mui-control-height-md);
+    padding: 0 var(--mui-control-padding-x-md);
+    border-radius: var(--mui-radius-xl);
+    font-size: var(--mui-control-font-size-md);
+  }
+
+  .mui-input[data-size="lg"],
+  .mui-select__trigger[data-size="lg"] {
+    min-height: var(--mui-control-height-lg);
+    padding: 0 var(--mui-control-padding-x-lg);
+    border-radius: var(--mui-radius-xl);
+    font-size: var(--mui-control-font-size-lg);
+  }
+
   .mui-textarea {
     min-height: 5rem;
     resize: vertical;
     padding: var(--mui-space-2) var(--mui-control-padding-x-md);
+  }
+
+  .mui-textarea[data-size="xs"] {
+    min-height: calc(var(--mui-control-height-xs) * 3);
+    padding: var(--mui-space-1) var(--mui-control-padding-x-xs);
+    border-radius: var(--mui-radius-md);
+    font-size: var(--mui-control-font-size-xs);
+  }
+
+  .mui-textarea[data-size="sm"] {
+    min-height: calc(var(--mui-control-height-sm) * 3);
+    padding: var(--mui-space-1) var(--mui-control-padding-x-sm);
+    border-radius: var(--mui-radius-md);
+    font-size: var(--mui-control-font-size-sm);
+  }
+
+  .mui-textarea[data-size="md"] {
+    min-height: 5rem;
+    padding: var(--mui-space-2) var(--mui-control-padding-x-md);
+    border-radius: var(--mui-radius-xl);
+    font-size: var(--mui-control-font-size-md);
+  }
+
+  .mui-textarea[data-size="lg"] {
+    min-height: 6rem;
+    padding: var(--mui-space-2) var(--mui-control-padding-x-lg);
+    border-radius: var(--mui-radius-xl);
+    font-size: var(--mui-control-font-size-lg);
+  }
+
+  .mui-input:not([data-size]),
+  .mui-textarea:not([data-size]),
+  .mui-select__trigger:not([data-size]) {
+    border-radius: var(--mui-radius-xl);
   }
 
   .mui-input::placeholder,
@@ -325,6 +433,7 @@
   }
 
   .mui-input:disabled,
+  .mui-input[data-disabled],
   .mui-textarea:disabled,
   .mui-select__trigger[data-disabled] {
     cursor: not-allowed;
@@ -378,9 +487,9 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 1rem;
-    height: 1rem;
-    flex: 0 0 1rem;
+    width: var(--mui-choice-size-md);
+    height: var(--mui-choice-size-md);
+    flex: 0 0 var(--mui-choice-size-md);
     border: 1px solid var(--mui-color-input);
     background: var(--mui-color-card);
     color: var(--mui-color-primary-foreground);
@@ -389,6 +498,34 @@
 
   .mui-checkbox {
     border-radius: var(--mui-radius-md);
+  }
+
+  .mui-checkbox[data-size="xs"],
+  .mui-radio-group__item[data-size="xs"] {
+    width: var(--mui-choice-size-xs);
+    height: var(--mui-choice-size-xs);
+    flex-basis: var(--mui-choice-size-xs);
+  }
+
+  .mui-checkbox[data-size="sm"],
+  .mui-radio-group__item[data-size="sm"] {
+    width: var(--mui-choice-size-sm);
+    height: var(--mui-choice-size-sm);
+    flex-basis: var(--mui-choice-size-sm);
+  }
+
+  .mui-checkbox[data-size="md"],
+  .mui-radio-group__item[data-size="md"] {
+    width: var(--mui-choice-size-md);
+    height: var(--mui-choice-size-md);
+    flex-basis: var(--mui-choice-size-md);
+  }
+
+  .mui-checkbox[data-size="lg"],
+  .mui-radio-group__item[data-size="lg"] {
+    width: var(--mui-choice-size-lg);
+    height: var(--mui-choice-size-lg);
+    flex-basis: var(--mui-choice-size-lg);
   }
 
   .mui-checkbox:is(:hover, [data-hovered]):not([data-disabled]),
@@ -413,18 +550,45 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    width: 100%;
+    height: 100%;
+  }
+
+  .mui-checkbox__indicator > svg {
+    width: 70%;
+    height: 70%;
   }
 
   .mui-switch {
     display: inline-flex;
     align-items: center;
-    width: 2.25rem;
-    height: 1.25rem;
+    width: var(--mui-switch-width-md);
+    height: var(--mui-switch-height-md);
     border-radius: 999px;
     border: 1px solid var(--mui-color-input);
     background: var(--mui-color-muted);
     padding: 1px;
     outline: none;
+  }
+
+  .mui-switch[data-size="xs"] {
+    width: var(--mui-switch-width-xs);
+    height: var(--mui-switch-height-xs);
+  }
+
+  .mui-switch[data-size="sm"] {
+    width: var(--mui-switch-width-sm);
+    height: var(--mui-switch-height-sm);
+  }
+
+  .mui-switch[data-size="md"] {
+    width: var(--mui-switch-width-md);
+    height: var(--mui-switch-height-md);
+  }
+
+  .mui-switch[data-size="lg"] {
+    width: var(--mui-switch-width-lg);
+    height: var(--mui-switch-height-lg);
   }
 
   .mui-switch:is(:hover, [data-hovered]):not([data-disabled]) {
@@ -443,8 +607,8 @@
 
   .mui-switch__thumb {
     display: block;
-    width: 1rem;
-    height: 1rem;
+    width: calc(var(--mui-switch-height-md) - 0.25rem);
+    height: calc(var(--mui-switch-height-md) - 0.25rem);
     border-radius: 999px;
     background: var(--mui-color-card);
     box-shadow: var(--mui-shadow-sm);
@@ -452,7 +616,34 @@
   }
 
   .mui-switch[data-checked] .mui-switch__thumb {
-    transform: translateX(1rem);
+    transform: translateX(calc(var(--mui-switch-width-md) - var(--mui-switch-height-md)));
+  }
+
+  .mui-switch[data-size="xs"] .mui-switch__thumb {
+    width: calc(var(--mui-switch-height-xs) - 0.25rem);
+    height: calc(var(--mui-switch-height-xs) - 0.25rem);
+  }
+
+  .mui-switch[data-size="sm"] .mui-switch__thumb {
+    width: calc(var(--mui-switch-height-sm) - 0.25rem);
+    height: calc(var(--mui-switch-height-sm) - 0.25rem);
+  }
+
+  .mui-switch[data-size="lg"] .mui-switch__thumb {
+    width: calc(var(--mui-switch-height-lg) - 0.25rem);
+    height: calc(var(--mui-switch-height-lg) - 0.25rem);
+  }
+
+  .mui-switch[data-size="xs"][data-checked] .mui-switch__thumb {
+    transform: translateX(calc(var(--mui-switch-width-xs) - var(--mui-switch-height-xs)));
+  }
+
+  .mui-switch[data-size="sm"][data-checked] .mui-switch__thumb {
+    transform: translateX(calc(var(--mui-switch-width-sm) - var(--mui-switch-height-sm)));
+  }
+
+  .mui-switch[data-size="lg"][data-checked] .mui-switch__thumb {
+    transform: translateX(calc(var(--mui-switch-width-lg) - var(--mui-switch-height-lg)));
   }
 
   .mui-radio-group {
@@ -466,8 +657,8 @@
 
   .mui-radio-group__indicator::after {
     content: "";
-    width: 0.375rem;
-    height: 0.375rem;
+    width: 45%;
+    height: 45%;
     border-radius: 999px;
     background: currentColor;
     display: block;
@@ -477,8 +668,28 @@
   .mui-sheet__overlay {
     position: fixed;
     inset: 0;
+    z-index: var(--mui-z-index-overlay);
     background: var(--mui-color-overlay);
     animation: mui-fade-in 140ms ease;
+  }
+
+  [data-scope="dropdown-menu"][data-part="positioner"],
+  [data-scope="dropdown-menu"][data-part="sub-positioner"],
+  [data-scope="select"][data-part="positioner"] {
+    z-index: var(--mui-z-index-dropdown);
+  }
+
+  [data-scope="popover"][data-part="positioner"] {
+    z-index: var(--mui-z-index-popover);
+  }
+
+  [data-scope="tooltip"][data-part="positioner"] {
+    z-index: var(--mui-z-index-tooltip);
+  }
+
+  [data-mui-layer="modal"][data-part="positioner"],
+  [data-mui-layer="modal"][data-part="sub-positioner"] {
+    z-index: var(--mui-z-index-modal-popover);
   }
 
   .mui-dialog__content,
@@ -511,6 +722,7 @@
     position: fixed;
     top: 50%;
     left: 50%;
+    z-index: var(--mui-z-index-modal);
     width: min(28rem, calc(100vw - 2rem));
     max-height: calc(100vh - 2rem);
     transform: translate(-50%, -50%);
@@ -577,7 +789,7 @@
 
   .mui-dialog__close:focus-visible,
   .mui-sheet__close:focus-visible {
-    box-shadow: 0 0 0 2px var(--mui-color-ring);
+    color: var(--mui-color-ring);
   }
 
   .mui-popover__content,
@@ -585,7 +797,7 @@
   .mui-dropdown-menu__content {
     padding: var(--mui-space-1);
     min-width: 10rem;
-    max-height: min(22rem, calc(100vh - 1rem));
+    max-height: min(22rem, var(--available-height, calc(100vh - 1rem)));
     overflow: auto;
     font-size: var(--mui-text-sm);
     line-height: 1.4;
@@ -594,6 +806,10 @@
 
   .mui-popover__content {
     padding: var(--mui-space-3);
+  }
+
+  .mui-select__content {
+    min-width: max(10rem, var(--anchor-width, 0px));
   }
 
   .mui-tooltip__content {
@@ -678,7 +894,7 @@
     box-sizing: border-box;
     width: 100%;
     border: 1px solid var(--mui-color-input);
-    border-radius: var(--mui-radius-lg);
+    border-radius: var(--mui-radius-xl);
     background: var(--mui-color-card);
     color: var(--mui-color-foreground);
     font-size: var(--mui-control-font-size-md);
@@ -694,16 +910,6 @@
 
   .mui-select__trigger:is(:hover, [data-hovered]):not([data-disabled]) {
     background: var(--mui-color-surface-hover);
-  }
-
-  .mui-select__trigger[data-size="sm"] {
-    min-height: var(--mui-control-height-sm);
-    font-size: var(--mui-control-font-size-sm);
-  }
-
-  .mui-select__trigger[data-size="lg"] {
-    min-height: var(--mui-control-height-lg);
-    font-size: var(--mui-control-font-size-lg);
   }
 
   .mui-select__value-slot {
@@ -782,6 +988,7 @@
     position: fixed;
     top: 0;
     bottom: 0;
+    z-index: var(--mui-z-index-modal);
     width: min(22rem, calc(100vw - 1rem));
     padding: var(--mui-space-4);
     display: grid;

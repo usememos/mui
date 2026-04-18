@@ -273,6 +273,27 @@ Rules:
 - Avoid stacking multiple shadowed containers.
 - Do not use shadows to compensate for weak spacing or hierarchy.
 
+### Layering
+
+Floating UI must use semantic z-index tokens instead of local one-off values.
+
+| Token | Value | Use |
+| --- | --- | --- |
+| `dropdown` | 1000 | Dropdown menus and select popups |
+| `sticky` | 1100 | Sticky app chrome |
+| `overlay` | 1300 | Modal backdrops |
+| `modal` | 1400 | Dialogs and sheets |
+| `modal-popover` | 1500 | Portaled popups opened from modal content |
+| `popover` | 1200 | Popovers and non-modal floating detail |
+| `tooltip` | 1200 | Tooltips and short help overlays outside modals |
+
+Rules:
+
+- Portaled floating layers still need an explicit z-index.
+- Popup content must render above local stacking contexts such as cards, sticky headers, transformed containers, and modal content when nested.
+- Dialog backdrops must cover app chrome, with dialog content above the backdrop.
+- Use the full scale together if values need to change; avoid adjusting one layer in isolation.
+
 ### Iconography
 
 Use one icon family per product unless there is a strong compatibility reason.
@@ -381,11 +402,12 @@ Rules:
 - Default background: `card` or equivalent surface.
 - Border: `input`.
 - Placeholder: `text-faint`.
-- Focus: stronger border plus soft ring.
+- Focus: stronger border without an outer ring.
 - Invalid state: destructive border or message.
 - Disabled state: reduced opacity and unavailable cursor.
 - No heavy shadow.
 - Labels and helper text must be programmatically associated when possible.
+- Outer focus rings are reserved for controls where border-only focus is not visible enough.
 
 ### Menu
 

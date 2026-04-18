@@ -1,5 +1,6 @@
 export { Button } from "./foundation/button";
 export { Checkbox } from "./foundation/checkbox";
+export { Input } from "./foundation/input";
 export { RadioGroup } from "./foundation/radio-group";
 export { Separator } from "./foundation/separator";
 export { Switch } from "./foundation/switch";
@@ -10,5 +11,7 @@ export { Tooltip } from "./overlay/tooltip";
 export { Select } from "./selection/select";
 export type { ButtonProps, ButtonSize, ButtonVariant } from "./foundation/button";
 export type { CheckboxProps } from "./foundation/checkbox";
+export type { InputProps } from "./foundation/input";
 export type { SeparatorProps } from "./foundation/separator";
 export type { SwitchProps } from "./foundation/switch";
+export type { ControlSize } from "./shared/control-size";

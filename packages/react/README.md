@@ -17,7 +17,9 @@ import "@usememos/mui/theme.css";
 ## Compound API
 
 ```tsx
-import { Button, Dialog, Select } from "@usememos/mui";
+import { Button, Dialog, Input, Select } from "@usememos/mui";
+
+<Input aria-label="Project name" placeholder="Project name" />;
 
 <Dialog.Root>
   <Dialog.Trigger render={<Button />}>Open dialog</Dialog.Trigger>
@@ -48,6 +50,7 @@ import { Button, Dialog, Select } from "@usememos/mui";
 - `@usememos/mui/checkbox`
 - `@usememos/mui/dialog`
 - `@usememos/mui/dropdown-menu`
+- `@usememos/mui/input`
 - `@usememos/mui/popover`
 - `@usememos/mui/radio-group`
 - `@usememos/mui/select`

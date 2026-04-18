@@ -2,10 +2,12 @@ import { CheckIcon, ChevronDownIcon, ChevronUpIcon } from "lucide-react";
 import * as React from "react";
 
 import { Select as PrimitiveSelect } from "../../../primitives/src/selection/select";
+import type { ControlSize } from "../shared/control-size";
+import { useOverlayLayerProps } from "../overlay/layer-context";
 import { cx } from "../shared/cx";
 
 type SelectTriggerProps = React.ComponentPropsWithoutRef<typeof PrimitiveSelect.Trigger> & {
-  size?: "sm" | "md" | "lg";
+  size?: ControlSize;
 };
 
 const Root = PrimitiveSelect.Root;
@@ -37,11 +39,13 @@ function Content({
   children,
   ...props
 }: React.ComponentPropsWithoutRef<typeof PrimitiveSelect.Content>) {
+  const layerProps = useOverlayLayerProps(props);
+
   return (
     <PrimitiveSelect.Portal>
       <PrimitiveSelect.Content
         className={cx("mui-select__content", className)}
-        {...props}
+        {...layerProps}
       >
         <PrimitiveSelect.ScrollUpButton className="mui-select__scroll-button">
           <ChevronUpIcon size={12} />

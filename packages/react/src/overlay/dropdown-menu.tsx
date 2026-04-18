@@ -2,6 +2,7 @@ import { CheckIcon, ChevronRightIcon, CircleIcon } from "lucide-react";
 import * as React from "react";
 
 import { DropdownMenu as PrimitiveDropdownMenu } from "../../../primitives/src/overlay/dropdown-menu";
+import { useOverlayLayerProps } from "./layer-context";
 import { cx } from "../shared/cx";
 
 const Root = PrimitiveDropdownMenu.Root;
@@ -24,12 +25,14 @@ function Content({
   sideOffset = 4,
   ...props
 }: React.ComponentPropsWithoutRef<typeof PrimitiveDropdownMenu.Content>) {
+  const layerProps = useOverlayLayerProps(props);
+
   return (
     <PrimitiveDropdownMenu.Portal>
       <PrimitiveDropdownMenu.Content
         className={cx("mui-dropdown-menu__content", className)}
         sideOffset={sideOffset}
-        {...props}
+        {...layerProps}
       />
     </PrimitiveDropdownMenu.Portal>
   );
@@ -138,10 +141,12 @@ function SubContent({
   className,
   ...props
 }: React.ComponentPropsWithoutRef<typeof PrimitiveDropdownMenu.SubContent>) {
+  const layerProps = useOverlayLayerProps(props);
+
   return (
     <PrimitiveDropdownMenu.SubContent
       className={cx("mui-dropdown-menu__content", className)}
-      {...props}
+      {...layerProps}
     />
   );
 }

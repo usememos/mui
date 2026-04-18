@@ -1,5 +1,6 @@
 import * as React from "react";
 
+import type { ControlSize } from "../shared/control-size";
 import { cx } from "../shared/cx";
 
 export type ButtonVariant =
@@ -9,7 +10,7 @@ export type ButtonVariant =
   | "ghost"
   | "destructive"
   | "link";
-export type ButtonSize = "sm" | "md" | "lg" | "icon";
+export type ButtonSize = ControlSize | "icon";
 
 export type ButtonProps = React.ComponentPropsWithoutRef<"button"> & {
   variant?: ButtonVariant;
