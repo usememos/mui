@@ -38,7 +38,7 @@ const Close = React.forwardRef<
       className={cx("mui-dialog__close", className)}
       {...props}
     >
-      {children ?? <XIcon size={16} aria-hidden="true" />}
+      {children ?? <XIcon size={14} aria-hidden="true" />}
       <span className="sr-only">Close</span>
     </PrimitiveDialog.Close>
   );
@@ -108,6 +108,11 @@ const Description = React.forwardRef<
 
 Header.displayName = "Dialog.Header";
 Footer.displayName = "Dialog.Footer";
+Title.displayName = "Dialog.Title";
+Description.displayName = "Dialog.Description";
+Close.displayName = "Dialog.Close";
+Content.displayName = "Dialog.Content";
+Overlay.displayName = "Dialog.Overlay";
 
 export const Dialog = {
   Root,

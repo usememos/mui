@@ -52,7 +52,7 @@ const components: ComponentMeta[] = [
   {
     name: "Button",
     href: "/docs/components/button",
-    summary: "Action primitives with four variants and compact sizing.",
+    summary: "Action primitives with six variants and compact sizing.",
     packageImport: 'import { Button } from "@usememos/mui";',
   },
   {
@@ -123,7 +123,7 @@ const docsPages: Record<string, DocPage> = {
             items={[
               "Theme tokens live in CSS variables, so subtree theming is straightforward.",
               "The public API stays close to Base UI primitives instead of hiding them behind a heavy config layer.",
-              "Buttons, fields, overlays, and selection controls all read from the same token map.",
+              "Buttons, controls, overlays, and selection components all read from the same token map.",
             ]}
           />
         </DocSection>
@@ -162,12 +162,12 @@ const docsPages: Record<string, DocPage> = {
       <>
         <DocSection title="Core color tokens">
           <CodeBlock
-            code={`:root {\n  --mui-color-background: #ffffff;\n  --mui-color-foreground: #0f172a;\n  --mui-color-primary: #111827;\n  --mui-color-primary-foreground: #ffffff;\n  --mui-color-accent: #f1f5f9;\n  --mui-color-border: #e2e8f0;\n}`}
+            code={`:root {\n  --mui-color-background: oklch(0.985 0.0015 260);\n  --mui-color-foreground: oklch(0.205 0.004 260);\n  --mui-color-card: oklch(1 0 0);\n  --mui-color-popover: oklch(1 0 0);\n  --mui-color-primary: oklch(0.245 0.006 260);\n  --mui-color-secondary: oklch(0.952 0.002 260);\n  --mui-color-muted: oklch(0.943 0.002 260);\n  --mui-color-accent: oklch(0.93 0.003 260);\n  --mui-color-border: oklch(0.895 0.003 260);\n  --mui-color-input: oklch(0.84 0.003 260);\n  --mui-color-ring: oklch(0.52 0.085 155);\n}`}
             language="css"
           />
           <FeatureList
             items={[
-              "The color model is semantic: background, surface, foreground, border, primary, accent, destructive, success, ring.",
+              "The color model is semantic: background, card, popover, foreground, border, input, primary, secondary, accent, destructive, and ring.",
               "Dark mode uses the same token names and only swaps their values.",
               "Any subtree can opt into a theme with `data-mui-theme`.",
             ]}
@@ -191,7 +191,7 @@ const docsPages: Record<string, DocPage> = {
               </div>
               <div className="theme-preview__surface theme-preview__surface--muted">
                 <span>Muted layer</span>
-                <Button variant="outline" size="sm">
+                <Button variant="secondary" size="sm">
                   Secondary
                 </Button>
               </div>
@@ -229,18 +229,20 @@ const docsPages: Record<string, DocPage> = {
       <>
         <DocSection title="Variants">
           <ExampleFrame
-            title="Four variants"
-            description="Solid, outline, ghost, and destructive are enough for the current system."
+            title="Six variants"
+            description="Default, secondary, outline, ghost, destructive, and link cover the shared action hierarchy."
           >
             <div className="button-row">
               <Button>Save</Button>
+              <Button variant="secondary">Archive</Button>
               <Button variant="outline">Preview</Button>
               <Button variant="ghost">Skip</Button>
               <Button variant="destructive">Delete</Button>
+              <Button variant="link">Learn more</Button>
             </div>
           </ExampleFrame>
           <CodeBlock
-            code={`<Button>Save</Button>\n<Button variant="outline">Preview</Button>\n<Button variant="ghost">Skip</Button>\n<Button variant="destructive">Delete</Button>`}
+            code={`<Button>Save</Button>\n<Button variant="secondary">Archive</Button>\n<Button variant="outline">Preview</Button>\n<Button variant="ghost">Skip</Button>\n<Button variant="destructive">Delete</Button>\n<Button variant="link">Learn more</Button>`}
             language="tsx"
           />
         </DocSection>
@@ -449,7 +451,7 @@ function HomePage() {
         </div>
         <div className="home-band__copy">
           <p>
-            Semantic CSS variables for themeing, compound React APIs for overlays
+            Semantic CSS variables for theming, compound React APIs for overlays
             and selections, and a docs surface that reads more like a product site
             than a component laboratory.
           </p>
@@ -469,7 +471,7 @@ function HomePage() {
           <article>
             <span>02</span>
             <h3>Theme tokens</h3>
-            <p>Light and dark modes only swap semantic variables such as `surface`, `accent`, and `ring`.</p>
+            <p>Light and dark modes only swap semantic variables such as `card`, `accent`, and `ring`.</p>
           </article>
           <article>
             <span>03</span>

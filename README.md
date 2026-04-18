@@ -25,6 +25,7 @@ Vitest browser tests use Playwright:
 pnpm exec playwright install chromium
 ```
 
-## Package Docs
+## Reference Docs
 
-See [packages/react/README.md](/Users/steven/Projects/usememos/mui/packages/react/README.md) for package usage, public entrypoints, and examples.
+- [Design system](docs/DESIGN_SYSTEM.md): core foundations, tokens, primitives, accessibility gates, governance, and migration rules.
+- [Package usage](packages/react/README.md): public entrypoints, examples, and consumer setup.

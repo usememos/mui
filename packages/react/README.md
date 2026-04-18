@@ -61,10 +61,16 @@ Theme overrides are done with CSS variables on `:root`, `[data-mui-theme]`, or a
 
 ```css
 :root {
-  --mui-color-background: #ffffff;
-  --mui-color-foreground: #0f172a;
-  --mui-color-primary: #111827;
-  --mui-color-primary-foreground: #ffffff;
+  --mui-color-background: oklch(0.985 0.0015 260);
+  --mui-color-foreground: oklch(0.205 0.004 260);
+  --mui-color-card: oklch(1 0 0);
+  --mui-color-popover: oklch(1 0 0);
+  --mui-color-primary: oklch(0.245 0.006 260);
+  --mui-color-primary-foreground: oklch(0.99 0 0);
+  --mui-color-secondary: oklch(0.952 0.002 260);
+  --mui-color-border: oklch(0.895 0.003 260);
+  --mui-color-input: oklch(0.84 0.003 260);
+  --mui-color-ring: oklch(0.52 0.085 155);
 }
 ```
 

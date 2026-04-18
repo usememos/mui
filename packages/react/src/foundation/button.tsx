@@ -2,7 +2,13 @@ import * as React from "react";
 
 import { cx } from "../shared/cx";
 
-export type ButtonVariant = "solid" | "outline" | "ghost" | "destructive";
+export type ButtonVariant =
+  | "default"
+  | "secondary"
+  | "outline"
+  | "ghost"
+  | "destructive"
+  | "link";
 export type ButtonSize = "sm" | "md" | "lg" | "icon";
 
 export type ButtonProps = React.ComponentPropsWithoutRef<"button"> & {
@@ -14,7 +20,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (
     {
       className,
-      variant = "solid",
+      variant = "default",
       size = "md",
       disabled,
       ...props

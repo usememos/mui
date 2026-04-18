@@ -1,5 +1,3 @@
-import "@fontsource-variable/fraunces";
-import "@fontsource-variable/manrope";
 import "@usememos/mui/theme.css";
 
 import React from "react";

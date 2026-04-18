@@ -13,7 +13,7 @@ export function Checkbox({ className, children, ...props }: CheckboxProps) {
       {...props}
     >
       <PrimitiveCheckbox.Indicator className="mui-checkbox__indicator">
-        <CheckIcon size={14} />
+        <CheckIcon size={10} strokeWidth={3} />
       </PrimitiveCheckbox.Indicator>
       {children}
     </PrimitiveCheckbox.Root>

@@ -24,8 +24,10 @@ function Trigger({
       data-size={size}
       {...props}
     >
-      {children}
-      <ChevronDownIcon className="mui-select__icon" size={16} aria-hidden="true" />
+      <span className="mui-select__value-slot">{children}</span>
+      <span className="mui-select__icon-slot" aria-hidden="true">
+        <ChevronDownIcon className="mui-select__icon" size={12} />
+      </span>
     </PrimitiveSelect.Trigger>
   );
 }
@@ -42,13 +44,13 @@ function Content({
         {...props}
       >
         <PrimitiveSelect.ScrollUpButton className="mui-select__scroll-button">
-          <ChevronUpIcon size={16} />
+          <ChevronUpIcon size={12} />
         </PrimitiveSelect.ScrollUpButton>
         <PrimitiveSelect.Viewport className="mui-select__viewport">
           {children}
         </PrimitiveSelect.Viewport>
         <PrimitiveSelect.ScrollDownButton className="mui-select__scroll-button">
-          <ChevronDownIcon size={16} />
+          <ChevronDownIcon size={12} />
         </PrimitiveSelect.ScrollDownButton>
       </PrimitiveSelect.Content>
     </PrimitiveSelect.Portal>
@@ -77,10 +79,14 @@ function Item({
       className={cx("mui-select__item", className)}
       {...props}
     >
-      <PrimitiveSelect.ItemText>{children}</PrimitiveSelect.ItemText>
-      <PrimitiveSelect.ItemIndicator className="mui-select__item-indicator">
-        <CheckIcon size={14} />
-      </PrimitiveSelect.ItemIndicator>
+      <span className="mui-select__item-leading" aria-hidden="true">
+        <PrimitiveSelect.ItemIndicator className="mui-select__item-indicator">
+          <CheckIcon size={10} />
+        </PrimitiveSelect.ItemIndicator>
+      </span>
+      <PrimitiveSelect.ItemText className="mui-select__item-text">
+        {children}
+      </PrimitiveSelect.ItemText>
     </PrimitiveSelect.Item>
   );
 }

@@ -11,9 +11,17 @@ const Group = PrimitiveDropdownMenu.Group;
 const Sub = PrimitiveDropdownMenu.Sub;
 const RadioGroup = PrimitiveDropdownMenu.RadioGroup;
 
+function ItemText({ className, ...props }: React.ComponentPropsWithoutRef<"span">) {
+  return <span className={cx("mui-dropdown-menu__item-text", className)} {...props} />;
+}
+
+function Shortcut({ className, ...props }: React.ComponentPropsWithoutRef<"span">) {
+  return <span className={cx("mui-dropdown-menu__shortcut", className)} {...props} />;
+}
+
 function Content({
   className,
-  sideOffset = 8,
+  sideOffset = 4,
   ...props
 }: React.ComponentPropsWithoutRef<typeof PrimitiveDropdownMenu.Content>) {
   return (
@@ -29,13 +37,17 @@ function Content({
 
 function Item({
   className,
+  children,
   ...props
 }: React.ComponentPropsWithoutRef<typeof PrimitiveDropdownMenu.Item>) {
   return (
     <PrimitiveDropdownMenu.Item
       className={cx("mui-dropdown-menu__item", className)}
       {...props}
-    />
+    >
+      <span className="mui-dropdown-menu__item-leading" aria-hidden="true" />
+      <ItemText>{children}</ItemText>
+    </PrimitiveDropdownMenu.Item>
   );
 }
 
@@ -49,12 +61,12 @@ function CheckboxItem({
       className={cx("mui-dropdown-menu__item", className)}
       {...props}
     >
-      <span className="mui-dropdown-menu__item-indicator">
+      <span className="mui-dropdown-menu__item-leading" aria-hidden="true">
         <PrimitiveDropdownMenu.CheckboxItemIndicator>
-          <CheckIcon size={14} />
+          <CheckIcon className="mui-dropdown-menu__item-indicator" size={10} />
         </PrimitiveDropdownMenu.CheckboxItemIndicator>
       </span>
-      {children}
+      <ItemText>{children}</ItemText>
     </PrimitiveDropdownMenu.CheckboxItem>
   );
 }
@@ -69,12 +81,12 @@ function RadioItem({
       className={cx("mui-dropdown-menu__item", className)}
       {...props}
     >
-      <span className="mui-dropdown-menu__item-indicator">
+      <span className="mui-dropdown-menu__item-leading" aria-hidden="true">
         <PrimitiveDropdownMenu.RadioItemIndicator>
-          <CircleIcon size={10} fill="currentColor" />
+          <CircleIcon className="mui-dropdown-menu__item-indicator" size={6} fill="currentColor" />
         </PrimitiveDropdownMenu.RadioItemIndicator>
       </span>
-      {children}
+      <ItemText>{children}</ItemText>
     </PrimitiveDropdownMenu.RadioItem>
   );
 }
@@ -113,8 +125,11 @@ function SubTrigger({
       className={cx("mui-dropdown-menu__sub-trigger", className)}
       {...props}
     >
-      {children}
-      <ChevronRightIcon size={14} />
+      <span className="mui-dropdown-menu__item-leading" aria-hidden="true" />
+      <ItemText>{children}</ItemText>
+      <span className="mui-dropdown-menu__item-trailing" aria-hidden="true">
+        <ChevronRightIcon size={12} />
+      </span>
     </PrimitiveDropdownMenu.SubTrigger>
   );
 }
@@ -144,6 +159,8 @@ export const DropdownMenu = {
   RadioItem,
   Label,
   Separator,
+  ItemText,
+  Shortcut,
   SubTrigger,
   SubContent,
 };

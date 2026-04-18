@@ -9,7 +9,7 @@ const Trigger = PrimitiveTooltip.Trigger;
 
 function Content({
   className,
-  sideOffset = 8,
+  sideOffset = 6,
   ...props
 }: React.ComponentPropsWithoutRef<typeof PrimitiveTooltip.Content>) {
   return (
